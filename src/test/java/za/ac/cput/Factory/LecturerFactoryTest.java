@@ -42,18 +42,18 @@ public class LecturerFactoryTest {
         assertEquals("cn@school.com",lecturer1.getLecturerEmail());
     }
 
-    @Disabled("Test disabled as it will fail (Correct outcome).")
-    @Test
-    void testEmailFail()
-    {
-        assertTrue(EmailValidator.getInstance().isValid(test.getLecturerEmail()));
-    }
-
-    @Test
-    void testEmailPass()
-    {
-        assertTrue(EmailValidator.getInstance().isValid(lecturer1.getLecturerEmail()));
-    }
+//    @Disabled("Test disabled as it will fail (Correct outcome).")
+//    @Test
+//    void testEmailFail()
+//    {
+//        assertTrue(EmailValidator.getInstance().isValid(test.getLecturerEmail()));
+//    }
+//
+//    @Test
+//    void testEmailPass()
+//    {
+//        assertTrue(EmailValidator.getInstance().isValid(lecturer1.getLecturerEmail()));
+//    }
 
     @Test
     void testObjectIdentity()
