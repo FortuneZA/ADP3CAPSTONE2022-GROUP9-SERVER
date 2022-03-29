@@ -15,7 +15,7 @@ import java.util.Set;
 public class UniversityRepository implements IUniversityRepository {
 
     private static UniversityRepository universityRepository=null;
-    private Set<University> universityDB=null;
+    private Set<University> universityDB;
 
     public UniversityRepository()
     {
@@ -38,10 +38,9 @@ public class UniversityRepository implements IUniversityRepository {
 
     @Override
     public University read(String universityId) {
-        for(University uni: this.universityDB)
-            if(uni.getUniversityID().equalsIgnoreCase(universityId)) {
-                return uni;
-            }
+        for(University u: universityDB)
+            if(u.getUniversityID().equals(universityId))
+                return u;
         return null;
     }
 
