@@ -1,5 +1,11 @@
 package za.ac.cput.Factory;
 
+/* UniversityFactoryTest.java
+Test class for the University Factory
+Author: Cameron Henry Noemdo (219115443)
+Date: 29 March 2022
+*/
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -10,19 +16,47 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UniversityFactoryTest {
-    University university1,university2,university3; // objects declaration
+    University university1,university2,university3,test; // objects declaration
 
     @BeforeEach
     void setUp() { // objects instantiation
         university1=UniversityFactory.createUniversity("CPUT", "Cape Town", "District Six","021132456789");
         university2=UniversityFactory.createUniversity("UWC", "Cape Town", "Bellville","+27984164181");
         university3=university1;
+        test=UniversityFactory.createUniversity("UCT","Cape Town","Cape Town","");
     }
 
     @Test
-    void testCreation() // test object creation
+    void testObjectCreation() // test object creation
     {
         assertNotNull(university1);
+    }
+
+    @Test
+    void testCreateUniversity()
+    {
+        assertNotNull(university1.getUniversityID());
+        assertEquals("CPUT",university1.getUniversityName());
+        assertEquals("Cape Town",university1.getCity());
+        assertEquals("District Six",university1.getAddress());
+        assertEquals("021132456789",university1.getPhoneNumber());
+    }
+
+    @Disabled("Test disabled as it will fail (Correct outcome).")
+    @Test
+    void testFailCreateUniversity()
+    {
+        assertNotNull(test.getUniversityID());
+        assertEquals("UCT",test.getUniversityName());
+        assertEquals("Cape Town",test.getCity());
+        assertEquals("Cape Town",test.getAddress());
+        assertEquals("",test.getPhoneNumber());
+    }
+
+    @Test
+    void testPhoneNumberShallowCopy()
+    {
+        assertEquals("021132456789",university3.getPhoneNumber());
     }
 
     @Test
@@ -53,13 +87,5 @@ public class UniversityFactoryTest {
             System.out.println("Exception: "+iEx.getMessage());
             System.out.println("Test timed out");
         }
-    }
-
-    @Test
-    @Disabled
-    void disableTest()
-    {
-        assertNotNull(university3);
-        System.out.println("Test successfully disabled");
     }
 }
