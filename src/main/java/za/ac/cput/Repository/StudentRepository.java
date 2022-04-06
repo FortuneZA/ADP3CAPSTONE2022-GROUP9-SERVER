@@ -35,15 +35,16 @@ public class StudentRepository implements IStudentRepository
     }
 
     @Override
-    public Student read(String StudentId) {
+    public Student read(String StudentId)
+    {
 
-        for (Student student : this.studentDB) {
-            String studentId;
-            if (student.getStudentId().equalsIgnoreCase(StudentId))
+        Student student = studentDB.stream()
+                .filter(e -> e.getStudentId().equals(StudentId))
+                .findAny()
+                .orElse(null);
                 return student;
-        }
 
-        return null;
+
     }
 
     @Override

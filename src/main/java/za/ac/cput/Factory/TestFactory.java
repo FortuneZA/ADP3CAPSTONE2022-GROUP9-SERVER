@@ -9,12 +9,13 @@ Date : 23 March 2022
 public class TestFactory
 {
 
-    public static Test createTest(String lecturerId, String testInfo){
+    public static Test createTest(String lecturerId, String testDate, String testInfo){
 
         String testId = GenericHelper.generateID();
 
         Test test = new Test.Builder()
                 .setTestId(testId)
+                .setTestDate(testDate)
                 .setLecturerId(lecturerId)
                 .setTestInfo(testInfo)
                 .build();
