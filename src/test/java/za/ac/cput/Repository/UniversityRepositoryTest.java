@@ -29,11 +29,16 @@ public class UniversityRepositoryTest {
         System.out.println("---TEST---");
     }
 
+    void createUniversity(University uni)
+    {
+        universityCreated=universityRepository.create(uni);
+    }
+
     @Order(1)
     @Test
     void a_create()
     {
-        universityCreated=universityRepository.create(university3);
+        createUniversity(university3);
         assertEquals(universityCreated.getUniversityID(),university3.getUniversityID());
         System.out.println("New University created: "+universityCreated);
     }
@@ -42,7 +47,7 @@ public class UniversityRepositoryTest {
     @Test
     void b_read()
     {
-        universityCreated=universityRepository.create(university2);
+        createUniversity(university2);
         University universityRead= universityRepository.read(universityCreated.getUniversityID());
         System.out.println("University details: "+universityRead);
     }
@@ -51,7 +56,7 @@ public class UniversityRepositoryTest {
     @Test
     void c_update()
     {
-        universityCreated=universityRepository.create(university);
+        createUniversity(university);
         University universityUpdated=new University.Builder().copy(university).setAddress("Bellville").setPhoneNumber("0219876543").build();
         universityUpdated=universityRepository.update(universityUpdated);
         System.out.println("Old: {ID: "+university.getUniversityID()+", Name: "+university.getUniversityName()+", City: "+university.getCity()+", Address: "+university.getAddress()+", Phone number: "+university.getPhoneNumber()+"}" +
@@ -62,7 +67,7 @@ public class UniversityRepositoryTest {
     @Test
     void d_delete()
     {
-        universityCreated=universityRepository.create(university);
+        createUniversity(university);
         universityRepository.delete(university.getUniversityID());
         System.out.println("Deleted: "+university.getUniversityID());
         System.out.println(universityRepository.read(university.getUniversityID()));
