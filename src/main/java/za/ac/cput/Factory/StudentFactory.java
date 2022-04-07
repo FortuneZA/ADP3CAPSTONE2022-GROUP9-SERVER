@@ -9,6 +9,9 @@ Date : 23 March 2022
 public class StudentFactory
 {
     public static Student createStudent(String firstName, String lastName, String studentEmail, String courseID){
+       if(!GenericHelper.isValidEmail(studentEmail))
+           return null;
+
         String studentID = GenericHelper.generateID();
         Student student = new Student.Builder()
                 .setStudentId(studentID)
