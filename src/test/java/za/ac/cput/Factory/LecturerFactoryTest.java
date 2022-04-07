@@ -76,12 +76,12 @@ public class LecturerFactoryTest {
         {
             TimeUnit.MILLISECONDS.sleep(1);
             assertNotEquals(lecturer1,lecturer2);
-            System.out.println("Timeout test PASSED");
+            System.out.print("Timeout test PASSED");
         }
         catch(InterruptedException iEx)
         {
-            System.out.println("Exception: "+iEx.getMessage());
-            System.out.println("Test timed out");
+            System.out.print("Exception: "+iEx.getMessage());
+            System.out.print("Test timed out");
         }
     }
 }

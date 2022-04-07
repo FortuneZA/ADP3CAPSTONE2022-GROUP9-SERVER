@@ -1,3 +1,4 @@
+
 package za.ac.cput.Repository;
 
 /* IRepository.java
@@ -14,3 +15,5 @@ public interface IRepository<T,ID> {
     public T update(T t);
     public boolean delete(ID id);
 }
+
+
