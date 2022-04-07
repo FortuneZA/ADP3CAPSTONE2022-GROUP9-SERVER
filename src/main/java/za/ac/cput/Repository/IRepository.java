@@ -7,7 +7,7 @@ package za.ac.cput.Repository;
 */
 
 public interface IRepository<T,ID> {
-    //CRUD
+    //CRUD Functionality
 
     public T create(T t);
     public T read(ID id);
