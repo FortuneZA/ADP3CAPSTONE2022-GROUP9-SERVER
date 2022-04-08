@@ -9,7 +9,7 @@ Date : 23 March 2022
 public class StudentFactory
 {
     public static Student createStudent(String firstName, String lastName, String studentEmail, String courseID){
-       if(!GenericHelper.isValidEmail(studentEmail))
+       if(!GenericHelper.emailValidation(studentEmail))
            return null;
 
         String studentID = GenericHelper.generateID();

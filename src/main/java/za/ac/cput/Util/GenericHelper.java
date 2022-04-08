@@ -6,7 +6,7 @@ public class GenericHelper
 {
 
     //Student Email Validator
-    public static boolean isValidEmail (String studentEmail)
+    public static boolean emailValidation (String studentEmail)
     {
         EmailValidator ev = EmailValidator.getInstance();
         return ev.isValid(studentEmail);
