@@ -24,9 +24,6 @@ public class GenericHelper {
         return EmailValidator.getInstance().isValid(email);
     }
 
-    public static String generateID(){
-        return UUID.randomUUID().toString();
-    }
 
 
 }
