@@ -16,14 +16,16 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UniversityFactoryTest {
-    University university1,university2,university3,test; // objects declaration
+    University university1,university2,university3,test,test2; // objects declaration
 
     @BeforeEach
     void setUp() { // objects instantiation
         university1=UniversityFactory.createUniversity("CPUT", "Cape Town", "District Six","021132456789");
         university2=UniversityFactory.createUniversity("UWC", "Cape Town", "Bellville","+27984164181");
         university3=university1;
-        test=UniversityFactory.createUniversity("UCT","Cape Town","Cape Town","");
+        test=UniversityFactory.createUniversity("UCT","Cape Town","Cape Town","021 538 948"); // NOTE: incorrect phone number length
+        test2=UniversityFactory.createUniversity("CPUT","Cape Town","Wellington",""); // NOTE: no phone number
+        System.out.println("---TEST---");
     }
 
     @Test
@@ -44,13 +46,24 @@ public class UniversityFactoryTest {
 
     @Disabled("Test disabled as it will fail (Correct outcome).")
     @Test
-    void testFailCreateUniversity()
+    void testFailCreateUniversity() // Test for incorrect/correct phone number length
     {
         assertNotNull(test.getUniversityID());
         assertEquals("UCT",test.getUniversityName());
         assertEquals("Cape Town",test.getCity());
         assertEquals("Cape Town",test.getAddress());
-        assertEquals("",test.getPhoneNumber());
+        assertEquals("021 538 948",test.getPhoneNumber()); // length is still 9 after replacing whitespaces with no space. with spaces, length is 11 which would have been acceptable if not for the regex
+    }
+
+    @Disabled("Test disabled as it will fail (Correct outcome).")
+    @Test
+    void testFailCreateUniversity2() // Test for missing phone number
+    {
+        assertNotNull(test2.getUniversityID());
+        assertEquals("UCT",test2.getUniversityName());
+        assertEquals("Cape Town",test2.getCity());
+        assertEquals("Wellington",test2.getAddress());
+        assertEquals("",test2.getPhoneNumber());
     }
 
     @Test
