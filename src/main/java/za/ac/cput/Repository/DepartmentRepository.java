@@ -1,6 +1,6 @@
 /*
- * Faculty.java
- * Entity for the Faculty
+ * DepartmentRepository.java
+ * Repository for the Department
  * Author: Mawande Langa(219074054)
  * Date: 30 March 2022
  * */
