@@ -28,20 +28,25 @@ public class LecturerRepositoryTest {
         System.out.println("---TEST---");
     }
 
+    void createLecturer(Lecturer lec)
+    {
+        lecturerCreated=lecturerRepository.create(lec);
+    }
+
     @Order(1)
     @Test
     void a_create()
     {
-        lecturerCreated=lecturerRepository.create(lecturer3);
+        createLecturer(lecturer3);
         assertEquals(lecturerCreated.getLecturerID(),lecturer3.getLecturerID());
         System.out.println("New Lecturer created: "+lecturerCreated);
     }
 
     @Order(2)
     @Test
-    void b_read() // test reads null when it shouldn't. FIX!!!
+    void b_read()
     {
-        lecturerCreated=lecturerRepository.create(lecturer2);
+        createLecturer(lecturer2);
         Lecturer lecturerRead= lecturerRepository.read(lecturerCreated.getLecturerID());
         System.out.println("Lecturer details: "+lecturerRead);
     }
@@ -50,18 +55,18 @@ public class LecturerRepositoryTest {
     @Test
     void c_update()
     {
-        lecturerCreated=lecturerRepository.create(lecturer);
+        createLecturer(lecturer);
         Lecturer lecturerUpdated=new Lecturer.Builder().copy(lecturer).setFirstName("Johnathan").setLecturerEmail("johnd@school.com").build();
         lecturerUpdated=lecturerRepository.update(lecturerUpdated);
-        System.out.println("Old: {ID: "+lecturer.getLecturerID()+", First name: "+lecturer.getFirstName()+", Last name: "+lecturer.getLastName()+", Email: "+lecturer.getLecturerEmail()+"}\n" +
-                "New (updated): {ID: "+lecturerUpdated.getLecturerID()+", First name: "+lecturerUpdated.getFirstName()+", Last name: "+lecturerUpdated.getLastName()+", Email: "+lecturerUpdated.getLecturerEmail()+"}");
+        System.out.println("Old: \t\t\t{ID: "+lecturer.getLecturerID()+", First name: "+lecturer.getFirstName()+", Last name: "+lecturer.getLastName()+", Email: "+lecturer.getLecturerEmail()+"}\n" +
+                "New (updated): \t{ID: "+lecturerUpdated.getLecturerID()+", First name: "+lecturerUpdated.getFirstName()+", Last name: "+lecturerUpdated.getLastName()+", Email: "+lecturerUpdated.getLecturerEmail()+"}");
     }
 
     @Order(4)
     @Test
     void d_delete()
     {
-        lecturerCreated=lecturerRepository.create(lecturer);
+        createLecturer(lecturer);
         lecturerRepository.delete(lecturerCreated.getLecturerID());
         System.out.println("Deleted: "+lecturerCreated.getLecturerID());
         System.out.println(lecturerRepository.read(lecturerCreated.getLecturerID()));
