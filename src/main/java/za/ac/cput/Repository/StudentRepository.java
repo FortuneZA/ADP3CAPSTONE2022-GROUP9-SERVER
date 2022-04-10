@@ -1,5 +1,6 @@
 package za.ac.cput.Repository;
 import za.ac.cput.Entity.Student;
+import za.ac.cput.impl.IStudentRepository;
 /*
 Student.java
 Repository for Student
