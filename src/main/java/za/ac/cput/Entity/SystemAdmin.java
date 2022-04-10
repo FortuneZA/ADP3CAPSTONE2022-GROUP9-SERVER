@@ -1,7 +1,6 @@
 package za.ac.cput.Entity;
 /*
         SystemAdmin.java
-        Entity for Student
         Author: Lefu Kumeke 218147856
         Date :03 April 2022
         */
