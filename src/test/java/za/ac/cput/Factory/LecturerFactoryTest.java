@@ -42,18 +42,18 @@ public class LecturerFactoryTest {
         assertEquals("cn@school.com",lecturer1.getLecturerEmail());
     }
 
-//    @Disabled("Test disabled as it will fail (Correct outcome).")
-//    @Test
-//    void testEmailFail()
-//    {
-//        assertTrue(EmailValidator.getInstance().isValid(test.getLecturerEmail()));
-//    }
-//
-//    @Test
-//    void testEmailPass()
-//    {
-//        assertTrue(EmailValidator.getInstance().isValid(lecturer1.getLecturerEmail()));
-//    }
+    @Disabled("Test disabled as it will fail (Correct outcome).")
+    @Test
+    void testEmailFail()
+    {
+        assertTrue(EmailValidator.getInstance().isValid(test.getLecturerEmail()));
+    }
+
+    @Test
+    void testEmailPass()
+    {
+        assertTrue(EmailValidator.getInstance().isValid(lecturer1.getLecturerEmail()));
+    }
 
     @Test
     void testObjectIdentity()
@@ -76,12 +76,12 @@ public class LecturerFactoryTest {
         {
             TimeUnit.MILLISECONDS.sleep(1);
             assertNotEquals(lecturer1,lecturer2);
-            System.out.println("Timeout test PASSED");
+            System.out.print("Timeout test PASSED");
         }
         catch(InterruptedException iEx)
         {
-            System.out.println("Exception: "+iEx.getMessage());
-            System.out.println("Test timed out");
+            System.out.print("Exception: "+iEx.getMessage());
+            System.out.print("Test timed out");
         }
     }
 }

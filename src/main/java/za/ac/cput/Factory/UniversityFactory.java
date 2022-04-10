@@ -16,10 +16,9 @@ public class UniversityFactory {
         if(universityName.isEmpty()
                 ||city.isEmpty()
                 ||address.isEmpty()
-                ||phoneNumber.isEmpty())
-//                ||(!phoneNumber.trim().substring(0,1).contains("0")&&!phoneNumber.trim().substring(0,3).contains("+27"))
-//                ||!phoneNumber.matches("^(?:[\\s]?[0-9+]){10,12}$")) // replace phone number validation with an actual validator
-        {
+                ||phoneNumber.isEmpty()
+                || !(phoneNumber.replaceAll("\\s+","").length() >=10 && phoneNumber.replaceAll("\\s+","").length() <=12)) // before checking length, whitespaces are replaced with no space
+            {
             return null;
         }
         else {
