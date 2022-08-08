@@ -6,58 +6,57 @@ Author: Cameron Henry Noemdo (219115443)
 Date: 29 March 2022
 */
 
+import java.util.List;
+
 public class University {
-    private String universityID;
+    private String universityId;
     private String universityName;
-    private String city;
-    private String address;
-    private String phoneNumber;
+    private String email;
+
+    private List<String> facultyList;
 
     public University(Builder builder) {
-        this.universityID= builder.universityID;
+        this.universityId=builder.universityId;
         this.universityName= builder.universityName;
-        this.city= builder.city;
-        this.address= builder.address;
-        this.phoneNumber=builder.phoneNumber;
+        this.email=builder.email;
+        this.facultyList=builder.facultyList;
     }
 
     public static class Builder
     {
-        private String universityID, universityName, city, address, phoneNumber;
 
-        public Builder setUniversityID(String universityID)
+        private String universityName, email, universityId;
+
+        private List<String> facultyList;
+
+        public Builder setUniversityId(String universityId)
         {
-            this.universityID=universityID;
+            this.universityId=universityId;
             return this;
         }
+
         public Builder setUniversityName(String universityName)
         {
             this.universityName=universityName;
             return this;
         }
-        public Builder setCity(String city)
+        public Builder setEmail(String email)
         {
-            this.city=city;
+            this.email=email;
             return this;
         }
-        public Builder setAddress(String address)
-        {
-            this.address=address;
-            return this;
-        }
-        public Builder setPhoneNumber(String phoneNumber)
-        {
-            this.phoneNumber=phoneNumber;
+
+        public Builder setFacultyList(List<String> facultyList) {
+            this.facultyList = facultyList;
             return this;
         }
 
         public Builder copy(University university)
         {
-            this.universityID=university.universityID;
+            this.universityId=university.universityId;
             this.universityName=university.universityName;
-            this.city=university.city;
-            this.address=university.address;
-            this.phoneNumber=university.phoneNumber;
+            this.email=university.email;
+            this.facultyList=university.facultyList;
             return this;
         }
 
@@ -67,34 +66,29 @@ public class University {
         }
     }
 
-    public String getUniversityID() {
-        return universityID;
+    public String getUniversityId() {
+        return universityId;
     }
 
     public String getUniversityName() {
         return universityName;
     }
 
-    public String getCity() {
-        return city;
+    public String getEmail() {
+        return email;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public List<String> getFacultyList() {
+        return facultyList;
     }
 
     @Override
     public String toString() {
         return "University{" +
-                "universityID='" + universityID + '\'' +
+                "universityId='" + universityId + '\'' +
                 ", universityName='" + universityName + '\'' +
-                ", city='" + city + '\'' +
-                ", address='" + address + '\'' +
-                ", phoneNumber=" + phoneNumber +
+                ", email='" + email + '\'' +
+                ", facultyList=" + facultyList +
                 '}';
     }
 }
