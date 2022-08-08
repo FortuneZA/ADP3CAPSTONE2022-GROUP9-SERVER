@@ -6,13 +6,20 @@ Author: Cameron Henry Noemdo (219115443)
 Date: 29 March 2022
 */
 
+import org.apache.commons.validator.routines.EmailValidator;
 import org.junit.jupiter.api.Test;
 import za.ac.cput.Entity.University;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UniversityFactoryTest {
-    private final University university=UniversityFactory.createUniversity("CPUT", "Cape Town", "District Six","0211324567");
+    List<String> list= Arrays.asList("Applied Science", "Informatics and Design", "Education");
+
+    private final University university=UniversityFactory.createUniversity("CPUT", "cput@cput.ac.za", list);
+    private final University university1=UniversityFactory.createUniversity("CPUT", "cputcput.ac.za", list);
     private University university2;
 
     @Test
@@ -26,15 +33,18 @@ public class UniversityFactoryTest {
 
     @Test
     void failCreateUniversity() {
-        Exception ex=assertThrows(IllegalArgumentException.class, ()->university2=UniversityFactory.createUniversity("", "Cape Town", "District Six","0211324567"));
+        Exception ex=assertThrows(IllegalArgumentException.class, ()->university2=UniversityFactory.createUniversity("", "cput@cput.ac.za", list));
         System.out.println(ex.getMessage());
         assertTrue(ex.getMessage().contains("University name"));
     }
 
     @Test
-    void testValidPhoneNumber() {
-        Exception exception=assertThrows(IllegalArgumentException.class,()->university2=UniversityFactory.createUniversity("CPUT", "Cape Town", "District Six","02113245675987"));
-        System.out.println(exception.getMessage());
-        assertTrue(exception.getMessage().contains("Invalid phone number length provided"));
+    void testValidEmail() {
+        assertTrue(EmailValidator.getInstance().isValid(university.getEmail()));
+    }
+
+    @Test
+    void testInvalidEmail() {
+        assertFalse(EmailValidator.getInstance().isValid(university1.getEmail()));
     }
 }
