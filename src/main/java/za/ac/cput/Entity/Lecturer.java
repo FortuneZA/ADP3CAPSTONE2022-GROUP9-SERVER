@@ -8,24 +8,34 @@ Date: 29 March 2022
 
 
 public class Lecturer {
-    private String lecturerID;
+    private String lecturerId;
     private String firstName;
+
+    private String middleName;
     private String lastName;
     private String lecturerEmail;
 
+    private String departmentId;
+
     private Lecturer(Builder builder) {
-        this.lecturerID = builder.lecturerID;
+        this.lecturerId = builder.lecturerId;
         this.firstName = builder.firstName;
+        this.middleName= builder.middleName;
         this.lastName = builder.lastName;
         this.lecturerEmail = builder.lecturerEmail;
+        this.departmentId= builder.departmentId;
     }
 
-    public String getLecturerID() {
-        return lecturerID;
+    public String getLecturerId() {
+        return lecturerId;
     }
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public String getMiddleName() {
+        return middleName;
     }
 
     public String getLastName() {
@@ -36,16 +46,25 @@ public class Lecturer {
         return lecturerEmail;
     }
 
-    public static class Builder {
-        private String lecturerID, firstName, lastName, lecturerEmail;
+    public String getDepartmentId() {
+        return departmentId;
+    }
 
-        public Builder setLecturerID(String lecturerID) {
-            this.lecturerID = lecturerID;
+    public static class Builder {
+        private String lecturerId, firstName, middleName, lastName, lecturerEmail, departmentId;
+
+        public Builder setLecturerId(String lecturerId) {
+            this.lecturerId = lecturerId;
             return this;
         }
 
         public Builder setFirstName(String firstName) {
             this.firstName = firstName;
+            return this;
+        }
+
+        public Builder setMiddleName(String middleName) {
+            this.middleName = middleName;
             return this;
         }
 
@@ -59,11 +78,18 @@ public class Lecturer {
             return this;
         }
 
+        public Builder setDepartmentId(String departmentId) {
+            this.departmentId = departmentId;
+            return this;
+        }
+
         public Builder copy(Lecturer lecturer) {
-            this.lecturerID = lecturer.lecturerID;
+            this.lecturerId = lecturer.lecturerId;
             this.firstName = lecturer.firstName;
+            this.middleName=lecturer.middleName;
             this.lastName = lecturer.lastName;
             this.lecturerEmail = lecturer.lecturerEmail;
+            this.departmentId=lecturer.departmentId;
             return this;
         }
 
@@ -75,10 +101,12 @@ public class Lecturer {
     @Override
     public String toString() {
         return "Lecturer{" +
-                "lecturerID='" + lecturerID + '\'' +
+                "lecturerId='" + lecturerId + '\'' +
                 ", firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", lecturerEmail='" + lecturerEmail + '\'' +
+                ", departmentId='" + departmentId + '\'' +
                 '}';
     }
 }
