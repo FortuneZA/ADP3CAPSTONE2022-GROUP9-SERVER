@@ -37,15 +37,15 @@ public class LecturerRepository implements ILecturerRepository {
 
     @Override
     public Lecturer read(String lecturerId) {
-        for(Lecturer l: this.lecturerDB)
-            if(l.getLecturerID().equals(lecturerId))
+        for(Lecturer l: lecturerDB)
+            if(l.getLecturerId().equals(lecturerId))
                 return l;
         return null;
     }
 
     @Override
     public Lecturer update(Lecturer lecturer) {
-        Lecturer oldLecturer=read(lecturer.getLecturerID());
+        Lecturer oldLecturer=read(lecturer.getLecturerId());
         if(oldLecturer!=null) {
             this.lecturerDB.remove(oldLecturer);
             this.lecturerDB.add(lecturer);
