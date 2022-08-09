@@ -27,7 +27,8 @@ Online Education
 
 ## Domain Model
 
-![image](https://user-images.githubusercontent.com/61013523/161529092-c230c0e0-83a4-4100-afd4-fe831e087701.png)
+![ADP3 Capstone-Group9-UML](https://user-images.githubusercontent.com/61013523/183709333-4ab6ce18-6ab6-4636-b893-213ed401cb26.jpeg)
+
 
 ## Built with:
 
