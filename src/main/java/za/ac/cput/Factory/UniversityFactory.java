@@ -10,26 +10,25 @@ import org.springframework.util.StringUtils;
 import za.ac.cput.Entity.University;
 import za.ac.cput.Util.GenericHelper;
 
+import java.util.List;
+
 public class UniversityFactory {
-    public static University createUniversity(String universityName, String city, String address, String phoneNumber)
+    public static University createUniversity(String universityName, String email, List<String> facultyList)
     {
-        String universityID = GenericHelper.generateID();
+        String universityId=GenericHelper.generateID();
+
         if(!StringUtils.hasLength(universityName))
             throw new IllegalArgumentException("University name is not present");
-        if(!StringUtils.hasLength(city))
-            throw new IllegalArgumentException("City is not present");
-        if(!StringUtils.hasLength(address))
-            throw new IllegalArgumentException("Address is not present");
-        if(!StringUtils.hasLength(phoneNumber))
-            throw new IllegalArgumentException("Phone number is not present");
-        if(!(phoneNumber.replaceAll("\\s+","").length() == 10 || phoneNumber.replaceAll("\\s+","").length() == 12))
-            throw new IllegalArgumentException("Invalid phone number length provided");
+        if(!StringUtils.hasLength(email))
+            throw new IllegalArgumentException("Email is not present");
+        GenericHelper.emailValidation(email);
+        if(facultyList.isEmpty())
+            throw new IllegalArgumentException("No faculties are present");
         return new University.Builder()
-                .setUniversityID(universityID)
+                .setUniversityId(universityId)
                 .setUniversityName(universityName)
-                .setCity(city)
-                .setAddress(address)
-                .setPhoneNumber(phoneNumber)
+                .setEmail(email)
+                .setFacultyList(facultyList)
                 .build();
     }
 }

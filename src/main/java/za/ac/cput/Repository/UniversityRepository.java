@@ -39,14 +39,14 @@ public class UniversityRepository implements IUniversityRepository {
     @Override
     public University read(String universityId) {
         for(University u: universityDB)
-            if(u.getUniversityID().equals(universityId))
+            if(u.getUniversityId().equals(universityId))
                 return u;
         return null;
     }
 
     @Override
     public University update(University university) {
-        University oldUniversity=read(university.getUniversityID());
+        University oldUniversity=read(university.getUniversityId());
         if(oldUniversity!=null) {
             this.universityDB.remove(oldUniversity);
             this.universityDB.add(university);
