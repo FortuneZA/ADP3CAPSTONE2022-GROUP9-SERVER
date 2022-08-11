@@ -4,21 +4,22 @@ import za.ac.cput.Entity.Course;
 import za.ac.cput.impl.ICourseRepository;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /* CourseRepository.java
   Repo for the Course Entity
  Author: Mathew Fortuin -219069514
- Date: 22/03/2022
+ Date: 8/08/2022
 */
 public class CourseRepository implements ICourseRepository {
 
     private static CourseRepository repository =null;
-    private Set<Course> courseDB =null;
+    private Set<Course> courseDB;
 
     private CourseRepository()
     {
-        courseDB = new HashSet<Course>();
+        courseDB = new HashSet<>();
     }
 
     public static CourseRepository getRepository()
@@ -45,7 +46,7 @@ public class CourseRepository implements ICourseRepository {
         for(Course course:this.courseDB)
         {
 
-            if(course.getCourseID().equalsIgnoreCase(courseID))
+            if(course.getCourseId().equalsIgnoreCase(courseID))
                 return course;
         }
 
@@ -55,7 +56,7 @@ public class CourseRepository implements ICourseRepository {
     @Override
     public Course update(Course course)
     {
-        Course beforeUpdate=read(course.getCourseID());
+        Course beforeUpdate=read(course.getCourseId());
 
         if(beforeUpdate!=null)
         {
@@ -85,6 +86,7 @@ public class CourseRepository implements ICourseRepository {
     {
         return courseDB;
     }
+
 
 
 }
