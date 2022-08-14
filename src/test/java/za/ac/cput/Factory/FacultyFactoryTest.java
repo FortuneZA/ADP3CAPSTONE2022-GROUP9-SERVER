@@ -9,57 +9,42 @@ package za.ac.cput.Factory;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import za.ac.cput.Entity.Faculty;
 
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class FacultyFactoryTest {
-
-    private Faculty faculty;
+    List<String> departmentList = Arrays.asList("Information Technology","Applied Design","Media");
+    private final Faculty faculty = FacultyFactory.createFaculty("Informatics and Design",departmentList);
     private Faculty faculty1;
-    private Faculty faculty2;
 
-
+    @Order(1)
     @Test
-     void testObjectCreation(){
-        Faculty faculty = FacultyFactory.createFaculty("Informatics and Design","infor@mycput.ac.za");
-        System.out.println(faculty.toString());
-        assertNotNull(faculty);
+    void buildFacultyFactoryWithSuccess(){
+        System.out.println(departmentList);
+        assertAll(
+                ()->assertNotNull(faculty),
+                ()-> assertEquals("Informatics and Design",faculty.getFacultyName())
+        );
     }
 
-    @BeforeEach
-    void setUp(){
-        faculty = FacultyFactory.createFaculty("Informatics and Design", "infor@mycput.ac.za");
-        faculty1 = FacultyFactory.createFaculty("Applied Sciences", "appliedsciences@mycput.ac.za");
-        faculty2 = faculty;
-    }
-
+    @Order(2)
     @Test
-    void testIdentity(){
-        assertSame(faculty2,faculty);
+    void buildFacultyFactoryWithEmptyName(){
+        Exception exception = assertThrows(IllegalArgumentException.class,()->
+                faculty1 = FacultyFactory.createFaculty("",departmentList));
+        String exceptionMessage = exception.getMessage();
+        System.out.println(exceptionMessage);
+        assertSame("Please provide faculty name ",exceptionMessage);
     }
 
-    @Test
-    void  testEquality(){
-        assertEquals(faculty2,faculty);
-    }
-
-    @Test
-    void testTimeout(){
-        assertTimeout(Duration.ofMillis(3000), ()->{
-            Thread.sleep(1000);
-        });
-
-    }
-
-    @Disabled
-    @Test
-    void disableTest(){
-        assertEquals(faculty,faculty1);
-    }
-
-
+//    @Order(3)
+//    @Test
+//    void buildFacultyWith
 }
