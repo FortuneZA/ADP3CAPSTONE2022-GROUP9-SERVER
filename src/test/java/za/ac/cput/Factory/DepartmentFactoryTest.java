@@ -8,53 +8,51 @@ package za.ac.cput.Factory;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import za.ac.cput.Entity.Department;
 
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class DepartmentFactoryTest {
-    private  Department department;
+
+    List<String> courseList = Arrays.asList("ICT in Application Development","Visual Communication Design","ICT in Communication Networks");
+    private final  Department department = DepartmentFactory.createDepartment("Information Technology","infor@cput.ac.za","+27 21 959 6767", courseList);
     private  Department department1;
-    private  Department department2;
-
+    @Order(1)
     @Test
-    public  void testObjectCreation(){
-        Department department = DepartmentFactory.createDepartment("Finance department","fao@cput.ac.za");
-        System.out.println(department.toString());
-        assertNotNull(department);
+    void buildDepartmentTestWithSuccess(){
+        System.out.println(department);
+        assertAll(
+                ()->assertNotNull(department),
+                ()->assertEquals("Information Technology",department.getDepartmentName())
+        );
     }
 
-    @BeforeEach
-    void setUp(){
-        department = DepartmentFactory.createDepartment("Finance department", "fao@cput.ac.za");
-        department1 = DepartmentFactory.createDepartment("IT department", "info@cput.ac.za");
-        department2 = department;
-    }
-
+    @Order(2)
     @Test
-    void testIdentity(){
-        assertSame(department2,department);
+    void buildDepartmentWithEmptyName(){
+        Exception exception = assertThrows(IllegalArgumentException.class,()->
+                department1 = DepartmentFactory.createDepartment("","infor@cput.ac.za","+27 21 959 6767", courseList));
+        String exceptionMessage = exception.getMessage();
+        System.out.println(exceptionMessage);
+        assertSame("Please provide department name",exceptionMessage);
+
     }
 
+    @Order(3)
     @Test
-    void testEquality(){
-        assertEquals(department2,department);
+    void buildDepartmentWithNullEmail(){
+        Exception exception = assertThrows(IllegalArgumentException.class,()->
+                department1 = DepartmentFactory.createDepartment("Information Technology","infor@cput.ac.za",null , courseList));
+        String exceptionMessage = exception.getMessage();
+        System.out.println(exceptionMessage);
+        assertSame("Please provide department telephone number", exceptionMessage);
     }
 
-    @Test
-    void testTimeOut(){
-        assertTimeout(Duration.ofMillis(5000), ()->{
-            Thread.sleep(1000);
-        });
-    }
-
-    @Disabled
-    @Test
-    void disabledTest(){
-        assertEquals(department,department1);
-    }
 
 }

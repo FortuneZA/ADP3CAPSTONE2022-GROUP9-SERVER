@@ -7,17 +7,19 @@
 
 package za.ac.cput.Entity;
 
+import java.util.List;
+
 public class Faculty {
 
     private String facultyID;
     private  String facultyName;
-    private String facultyEmail;
+    private List<String> departmentList;
 
     //private constr
     private Faculty(Builder builder){
         this.facultyID = builder.facultyID;
         this.facultyName = builder.facultyName;
-        this.facultyEmail = builder.facultyEmail;
+        this.departmentList = builder.departmentList;
 
     }
 
@@ -25,25 +27,11 @@ public class Faculty {
     public String getFacultyID() {
         return facultyID;
     }
-
-    public void setFacultyID(String facultyID) {
-        this.facultyID = facultyID;
-    }
-
     public String getFacultyName() {
         return facultyName;
     }
-
-    public void setFacultyName(String facultyName) {
-        this.facultyName = facultyName;
-    }
-
-    public String getFacultyEmail() {
-        return facultyEmail;
-    }
-
-    public void setFacultyEmail(String facultyEmail) {
-        this.facultyEmail = facultyEmail;
+    public List<String> getDepartmentList(){
+        return departmentList;
     }
 
     @Override
@@ -51,14 +39,13 @@ public class Faculty {
         return "Faculty{" +
                 "facultyID='" + facultyID + '\'' +
                 ", facultyName='" + facultyName + '\'' +
-                ", facultyEmail='" + facultyEmail + '\'' +
+                ", departmentList=" + departmentList +
                 '}';
     }
-
     public static class Builder{
         private String facultyID;
         private  String facultyName;
-        private String facultyEmail;
+        private List<String> departmentList;
 
         public Builder setFacultyID(String facultyID) {
             this.facultyID = facultyID;
@@ -70,15 +57,15 @@ public class Faculty {
             return this;
         }
 
-        public Builder setFacultyEmail(String facultyEmail) {
-            this.facultyEmail = facultyEmail;
+        public Builder setDepartmentList(List<String> departmentList){
+            this.departmentList = departmentList;
             return this;
         }
 
         public Builder copy(Faculty faculty){
             this.facultyID = faculty.facultyID;
             this.facultyName = faculty.facultyName;
-            this.facultyEmail = faculty.facultyEmail;
+            this.departmentList = faculty.departmentList;
             return this;
         }
 

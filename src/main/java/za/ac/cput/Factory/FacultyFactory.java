@@ -10,21 +10,22 @@ package za.ac.cput.Factory;
 import za.ac.cput.Entity.Faculty;
 import za.ac.cput.Util.GenericHelper;
 
+import java.util.List;
+
 public class FacultyFactory {
 
-    public static Faculty createFaculty(String facultyName,String facultyEmail){
+    public static Faculty createFaculty(String facultyName, List<String> departmentList){
         String facultyID = GenericHelper.generateID();
 
-        if(!GenericHelper.emailValidation(facultyEmail))
-            return null;
-
-        if(facultyName.isEmpty() || facultyEmail.isEmpty())
-            return null;
+        if(facultyID == null || facultyID.isEmpty())
+            throw new IllegalArgumentException("Please provide faculty Id");
+        if(facultyName == null || facultyName.isEmpty())
+            throw new IllegalArgumentException("Please provide faculty name ");
 
         Faculty faculty = new Faculty.Builder()
                 .setFacultyID(facultyID)
                 .setFacultyName(facultyName)
-                .setFacultyEmail(facultyEmail)
+                .setDepartmentList(departmentList)
                 .build();
         return faculty;
     }
