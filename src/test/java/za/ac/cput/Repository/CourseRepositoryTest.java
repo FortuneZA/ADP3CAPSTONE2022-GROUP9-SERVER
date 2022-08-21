@@ -1,8 +1,11 @@
 package za.ac.cput.Repository;
-CourseRepositoryTest.java
+
+
+
+/*CourseRepositoryTest.java
 Repository Test cases for Course
 Author: Mathew Fortuin - 219069514
-Date: 8/4/2022
+Date: 8/4/2022*/
 
 
 
@@ -56,7 +59,7 @@ public class CourseRepositoryTest {
         System.out.println("Course Details: "+courseRead);
     }
 
-    @Order(3)
+   /* @Order(3)
     @Test
     void c_update()
     {
@@ -64,7 +67,7 @@ public class CourseRepositoryTest {
         Course courseUpdated = new Course.Builder().copy(course).courseName("Business Science").courseDescription("Fundamentals").build();
         courseUpdated =courseRepo.update(courseUpdated);
         System.out.println("OLD: {ID: "+course.getCourseId()+",Name: "+course.getCourseName()+",Description: "+course.getCourseDescription()+"\nNEW: {ID: "+courseUpdated.getCourseId()+"Name: "+courseUpdated.getCourseName()+",Description: "+courseUpdated.getCourseDescription());
-    }
+    }*/
 
     @Order(4)
     @Test
