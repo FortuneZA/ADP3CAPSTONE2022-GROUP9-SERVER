@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SystemAdminRepositoryTest {
 
     private static SystemAdminRepository systemAdminRepository = SystemAdminRepository.getRepository();
-    private static SystemAdmin systemAdmin = SystemAdminFactory.createSystemAdmin("Paul", "Paul@gmail.com", "CPUT District 6");
+    private static SystemAdmin systemAdmin = SystemAdminFactory.createSystemAdmin("Paul", "Paul@gmail.com");
 
 
     @Test
@@ -37,10 +37,9 @@ class SystemAdminRepositoryTest {
     @Test
     void c_update() {
 
-        SystemAdmin updated = new SystemAdmin.Builder().copy(systemAdmin).setAdminName("John").setAdminEmail("John1@gmail.com").setUniversityID("CPUT Mowbrey").build();
+        SystemAdmin updated = new SystemAdmin.Builder().copy(systemAdmin).setAdminName("John").setAdminEmail("John1@gmail.com").build();
         assertNotNull(systemAdminRepository.update(updated));
-        System.out.println("Updated (" + updated.getAdminID() + "): " + updated.getAdminName() + " " + updated.getAdminEmail()+ " "
-                + updated.getUniversityID());
+        System.out.println("Updated (" + updated.getAdminID() + "): " + updated.getAdminName() + " " + updated.getAdminEmail());
     }
 
     @Test
