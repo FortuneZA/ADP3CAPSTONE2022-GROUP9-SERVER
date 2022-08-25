@@ -1,6 +1,14 @@
 package za.ac.cput.service.impl;
+
 /*
+    ITutorService.java
+    Author: Devon Daniels (217299822)
 
  */
-public interface ITutorService {
+import za.ac.cput.Entity.Tutor;
+import za.ac.cput.service.IService;
+import java.util.Set;
+
+public interface ITutorService extends IService<Tutor,String> {
+    Set<Tutor> getAll();
 }
