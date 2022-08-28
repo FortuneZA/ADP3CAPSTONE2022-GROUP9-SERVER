@@ -12,12 +12,13 @@ import za.ac.cput.Entity.Subject;
 import za.ac.cput.Repository.impl.ISubjectRepository;
 import za.ac.cput.service.impl.ISubjectService;
 
-import java.util.List;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class SubjectService implements ISubjectService {
 
-    private static SubjectService subjectService = null;
 
 @Autowired
 private ISubjectRepository subjectRepository;
@@ -26,7 +27,7 @@ private ISubjectRepository subjectRepository;
     public Subject create(Subject subject){return this.subjectRepository.save(subject);}
 
     @Override
-    public Subject read(String subjectId){return this.subjectRepository.getReferenceById(subjectId);}
+    public Subject read(String subjectId){return this.subjectRepository.findById(subjectId).orElseGet(null);}
 
     @Override
     public Subject update(Subject subject)
@@ -46,7 +47,8 @@ private ISubjectRepository subjectRepository;
         else return true;
     }
 
-    public List<Subject> findAll(){return subjectRepository.findAll();}
+    @Override
+    public Set<Subject> getAll() {return this.subjectRepository.findAll().stream().collect(Collectors.toSet());}
 
 
 

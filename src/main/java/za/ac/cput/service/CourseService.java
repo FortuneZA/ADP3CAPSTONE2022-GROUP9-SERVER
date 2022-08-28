@@ -13,11 +13,12 @@ import za.ac.cput.Repository.impl.ICourseRepository;
 import za.ac.cput.service.impl.ICourseService;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class CourseService implements ICourseService {
 
-    private static CourseService courseService = null;
 
     @Autowired
     private ICourseRepository   courseRepository;
@@ -26,7 +27,7 @@ public class CourseService implements ICourseService {
     public Course create(Course course){return this.courseRepository.save(course);}
 
     @Override
-    public Course read(String courseId){return this.courseRepository.getReferenceById(courseId);}
+    public Course read(String courseId){return this.courseRepository.findById(courseId).orElseGet(null);}
 
     @Override
     public Course update(Course course)
@@ -48,6 +49,7 @@ public class CourseService implements ICourseService {
         else return true;
     }
 
-    public List<Course> findAll(){return courseRepository.findAll();}
+  @Override
+  public Set<Course> getAll() {return this.courseRepository.findAll().stream().collect(Collectors.toSet()); }
 
 }
