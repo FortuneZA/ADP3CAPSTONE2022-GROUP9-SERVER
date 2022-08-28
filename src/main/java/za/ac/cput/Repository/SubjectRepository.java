@@ -7,6 +7,7 @@ package za.ac.cput.Repository;
 */
 
 import za.ac.cput.Entity.Subject;
+import za.ac.cput.Repository.impl.ISubjectRepository;
 import za.ac.cput.impl.ISubjectRepository;
 
 import java.util.HashSet;

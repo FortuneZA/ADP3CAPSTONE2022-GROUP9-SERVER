@@ -1,10 +1,12 @@
 package za.ac.cput.Repository;
 
 import za.ac.cput.Entity.Course;
+import za.ac.cput.Repository.impl.ICourseRepository;
 import za.ac.cput.impl.ICourseRepository;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 /* CourseRepository.java
@@ -82,7 +84,7 @@ public class CourseRepository implements ICourseRepository {
     }
 
     @Override
-    public Set<Course>getAll()
+    public Set<Course> getAll()
     {
         return courseDB;
     }
