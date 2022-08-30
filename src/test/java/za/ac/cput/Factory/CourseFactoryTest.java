@@ -15,24 +15,29 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CourseFactoryTest {
 
-    Course course = CourseFactory.createCourse("ICT800","Information and communication systems","The fundamentals of communication media within the IT industry","INFD");
+   private final Course course = CourseFactory.createCourse("ICT800","Information and communication systems","The fundamentals of communication media within the IT industry","IT200");
+   private final Course course2 = CourseFactory.createCourse("ARC405","Architectural Studies","The fundamentals of architectural principles  within the lanscape industry","IT200");
+
+   private Course course1;
 
 
-    //OBJECT EQUALITY
+    //Successful Create
     @Test
-    public void ObjectEquality()
+    void successCreateCourse()
     {
-        Course course2 = CourseFactory.createCourse("ARC123","Architectural Studies","Fundamentals of Building design","INFD");
-
-        assertNotEquals(course2,course);
+      assertAll(
+              ()->assertNotNull(course),
+              ()->assertEquals("ICT800",course.getCourseId())
+      );
     }
 
-    //OBJECT IDENTITY
+    //Fail Create
     @Test
-    public void ObjectIdentity()
+    void failCreateCourse()
     {
-        Course course2 = course;
-        assertEquals(course2,course);
+        Exception exception=assertThrows(IllegalArgumentException.class,()->course1=CourseFactory.createCourse("ARC405","Architectural Studies", "The fundamentals of architectural principles  within the lanscape industry","IT200"));
+        System.out.println(exception.getMessage());
+        assertTrue(exception.getMessage().contains("course name was not provided."));
     }
 
     //TIMEOUT
@@ -40,7 +45,7 @@ public class CourseFactoryTest {
     @Timeout(1)
     public void Timeout()
     {
-        ObjectIdentity();
+        successCreateCourse();
     }
 
     //DISABLE
@@ -48,12 +53,10 @@ public class CourseFactoryTest {
     @Test
     public void ObjectEquals()
     {
-        Course course2 = CourseFactory.createCourse("ARC123","Architectural Studies","Fundamentals of Building design","INFD");
-
-        assertEquals(course2,course);
+        failCreateCourse();
     }
 
-    //BUILD RESTRICTIONS
+    //Build Restrictions
    @Test
    public void TestNull()
    {

@@ -16,9 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LecturerRepositoryTest {
 
     private LecturerRepository lecturerRepository=LecturerRepository.getRepository();
-    private Lecturer lecturer= LecturerFactory.createLecturer("John","Doe","jd@school.com");
-    private Lecturer lecturer2= LecturerFactory.createLecturer("Susan","Crowley","scrowley@school.com");
-    private Lecturer lecturer3= LecturerFactory.createLecturer("William","Junior","willjunior@school.com");
+    private Lecturer lecturer= LecturerFactory.createLecturer("Cameron","Henry", "Noemdo","cn@cput.ac.za","0000000");
+    private Lecturer lecturer2= LecturerFactory.createLecturer("Susan","W", "Crowley","sc@cput.ac.za","0000001");
+    private Lecturer lecturer3= LecturerFactory.createLecturer("William","J", "Junior","wjj@cput.ac.za","0000002");
 
     private Lecturer lecturerCreated;
 
@@ -38,7 +38,7 @@ public class LecturerRepositoryTest {
     void a_create()
     {
         createLecturer(lecturer3);
-        assertEquals(lecturerCreated.getLecturerID(),lecturer3.getLecturerID());
+        assertEquals(lecturerCreated.getLecturerId(),lecturer3.getLecturerId());
         System.out.println("New Lecturer created: "+lecturerCreated);
     }
 
@@ -47,7 +47,7 @@ public class LecturerRepositoryTest {
     void b_read()
     {
         createLecturer(lecturer2);
-        Lecturer lecturerRead= lecturerRepository.read(lecturerCreated.getLecturerID());
+        Lecturer lecturerRead= lecturerRepository.read(lecturerCreated.getLecturerId());
         System.out.println("Lecturer details: "+lecturerRead);
     }
 
@@ -58,8 +58,8 @@ public class LecturerRepositoryTest {
         createLecturer(lecturer);
         Lecturer lecturerUpdated=new Lecturer.Builder().copy(lecturer).setFirstName("Johnathan").setLecturerEmail("johnd@school.com").build();
         lecturerUpdated=lecturerRepository.update(lecturerUpdated);
-        System.out.println("Old: \t\t\t{ID: "+lecturer.getLecturerID()+", First name: "+lecturer.getFirstName()+", Last name: "+lecturer.getLastName()+", Email: "+lecturer.getLecturerEmail()+"}\n" +
-                "New (updated): \t{ID: "+lecturerUpdated.getLecturerID()+", First name: "+lecturerUpdated.getFirstName()+", Last name: "+lecturerUpdated.getLastName()+", Email: "+lecturerUpdated.getLecturerEmail()+"}");
+        System.out.println("Old: {ID: "+lecturer.getLecturerId()+", First name: "+lecturer.getFirstName()+", Last name: "+lecturer.getLastName()+", Email: "+lecturer.getLecturerEmail()+"}\n" +
+                "New (updated): {ID: "+lecturerUpdated.getLecturerId()+", First name: "+lecturerUpdated.getFirstName()+", Last name: "+lecturerUpdated.getLastName()+", Email: "+lecturerUpdated.getLecturerEmail()+"}");
     }
 
     @Order(4)
@@ -67,9 +67,9 @@ public class LecturerRepositoryTest {
     void d_delete()
     {
         createLecturer(lecturer);
-        lecturerRepository.delete(lecturerCreated.getLecturerID());
-        System.out.println("Deleted: "+lecturerCreated.getLecturerID());
-        System.out.println(lecturerRepository.read(lecturerCreated.getLecturerID()));
+        lecturerRepository.delete(lecturerCreated.getLecturerId());
+        System.out.println("Deleted: "+lecturerCreated.getLecturerId());
+        System.out.println(lecturerRepository.read(lecturerCreated.getLecturerId()));
     }
 
     @Order(5)

@@ -21,6 +21,8 @@ public class GenericHelper {
 
     // email validator
     public static boolean emailValidation(String email) {
+        if(!EmailValidator.getInstance().isValid(email))
+            throw new IllegalArgumentException("Invalid email");
         return EmailValidator.getInstance().isValid(email);
     }
 

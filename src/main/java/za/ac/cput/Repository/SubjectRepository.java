@@ -3,10 +3,11 @@ package za.ac.cput.Repository;
 /* SubjectRepository.java
  Repository Class for the Subject entity
  Author: Mathew Fortuin -219069514
- Date: 15/03/2022
+ Date: 8/08/2022
 */
 
 import za.ac.cput.Entity.Subject;
+import za.ac.cput.Repository.impl.ISubjectRepository;
 import za.ac.cput.impl.ISubjectRepository;
 
 import java.util.HashSet;
@@ -15,10 +16,10 @@ import java.util.Set;
 public class SubjectRepository implements ISubjectRepository {
 
     private static SubjectRepository repository = null;
-    private Set<Subject> subjectDB = null;
+    private Set<Subject> subjectDB;
 
     private SubjectRepository(){
-        subjectDB = new HashSet<Subject>();
+        subjectDB = new HashSet<>();
     }
 
     public static SubjectRepository getRepository()
@@ -42,7 +43,7 @@ public class SubjectRepository implements ISubjectRepository {
     public Subject read(String SubjectId) {
         for(Subject subject : this.subjectDB)
         {
-            String subjectId;
+
             if(subject.getSubjectID().equalsIgnoreCase(SubjectId))
                 return subject;
         }

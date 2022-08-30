@@ -14,7 +14,7 @@ class SystemAdminFactoryTest {
     @Test
     public void test()
     {
-        SystemAdmin systemAdmin =  SystemAdminFactory.createSystemAdmin("Thato", "Thato@gmail.com ", " CPUT District 6");
+        SystemAdmin systemAdmin =  SystemAdminFactory.createSystemAdmin("Thato", "Thato@gmail.com ");
 
         assertNotNull(systemAdmin.toString());
         System.out.println(systemAdmin);

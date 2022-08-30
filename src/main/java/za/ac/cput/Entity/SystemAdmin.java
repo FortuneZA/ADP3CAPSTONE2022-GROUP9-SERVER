@@ -10,14 +10,12 @@ public class SystemAdmin {
     private String adminID;
     private String adminName;
     private String adminEmail;
-    private String universityID;
+
 
     private SystemAdmin(Builder builder) {
         this.adminID = builder.adminID;
         this.adminName = builder.adminName;
         this.adminEmail = builder.adminEmail;
-        this.universityID = builder.universityID;
-
     }
 
     @Override
@@ -26,7 +24,6 @@ public class SystemAdmin {
                 "adminID='" + adminID + '\'' +
                 ", adminName='" + adminName + '\'' +
                 ", adminEmail='" + adminEmail + '\'' +
-                ", universityID='" + universityID + '\'' +
                 '}';
     }
 
@@ -42,16 +39,14 @@ public class SystemAdmin {
         return adminEmail;
     }
 
-    public String getUniversityID() {
-        return universityID;
-    }
+
 
     // Builder Class
     public static class Builder {
         private String adminID;
         private String adminName;
         private String adminEmail;
-        private String universityID;
+
 
         public Builder setAdminID(String adminID) {
             this.adminID = adminID;
@@ -69,10 +64,7 @@ public class SystemAdmin {
 
         }
 
-        public Builder setUniversityID(String universityID) {
-            this.universityID = universityID;
-            return this;
-        }
+
 
         public SystemAdmin build() {
             return new SystemAdmin(this);
@@ -84,7 +76,6 @@ public class SystemAdmin {
             this.adminID = systemAdmin.adminID;
             this.adminName = systemAdmin.adminName;
             this.adminEmail = systemAdmin.adminEmail;
-            this.universityID = systemAdmin.universityID;
             return this;
 
         }

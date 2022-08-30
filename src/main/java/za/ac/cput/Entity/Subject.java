@@ -1,17 +1,33 @@
 package za.ac.cput.Entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /* Subject.java
  Class for the subject entity
  Author: Mathew Fortuin -219069514
  Date: 15/03/2022
 */
-
+@Entity
+@Table(name = "subject")
 public class Subject {
 
+
+    @Id
+    @Column(name = "Subject ID",nullable = false,unique = true,length =25)
     private String subjectID;
+    @Column(name = "Subject Name",nullable = false,unique = true,length =50)
     private String subjectName;
-    private int subjectCredit;
+    @Column(name = "Subject Credit",nullable = false,unique = true,length =10)
+    private Integer subjectCredit;
+    @Column(name = "Lecturer ID",nullable = false,unique = true,length =10)
     private String lecturerID;
+
+    public Subject() {
+
+    }
 
 //Builder Constructor
 
@@ -21,6 +37,8 @@ public class Subject {
         this.subjectID = builder.subjectID;
         this.lecturerID = builder.lecturerID;
     }
+
+
 
     //Getters
 
@@ -33,7 +51,7 @@ public class Subject {
         return subjectName;
     }
 
-    public int getSubjectCredit() {
+    public Integer getSubjectCredit() {
         return subjectCredit;
     }
 
@@ -46,7 +64,7 @@ public class Subject {
     public static class Builder {
         private String subjectID;
         private String subjectName;
-        private int subjectCredit;
+        private Integer subjectCredit;
         private String lecturerID;
 
         //Setters
@@ -56,7 +74,7 @@ public class Subject {
             return this;
         }
 
-        public Builder setSubjectCredit(int subjectCredit) {
+        public Builder setSubjectCredit(Integer subjectCredit) {
             this.subjectCredit = subjectCredit;
             return this;
         }

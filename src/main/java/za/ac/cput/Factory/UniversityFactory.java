@@ -6,29 +6,29 @@ Author: Cameron Henry Noemdo (219115443)
 Date: 29 March 2022
 */
 
+import org.springframework.util.StringUtils;
 import za.ac.cput.Entity.University;
 import za.ac.cput.Util.GenericHelper;
 
+import java.util.List;
+
 public class UniversityFactory {
-    public static University createUniversity(String universityName, String city, String address, String phoneNumber)
+    public static University createUniversity(String universityName, String email, List<String> facultyList)
     {
-        String universityID = GenericHelper.generateID();
-        if(universityName.isEmpty()
-                ||city.isEmpty()
-                ||address.isEmpty()
-                ||phoneNumber.isEmpty()
-                || !(phoneNumber.replaceAll("\\s+","").length() >=10 && phoneNumber.replaceAll("\\s+","").length() <=12)) // before checking length, whitespaces are replaced with no space
-            {
-            return null;
-        }
-        else {
-            return new University.Builder()
-                    .setUniversityID(universityID)
-                    .setUniversityName(universityName)
-                    .setCity(city)
-                    .setAddress(address)
-                    .setPhoneNumber(phoneNumber)
-                    .build();
-        }
+        String universityId=GenericHelper.generateID();
+
+        if(!StringUtils.hasLength(universityName))
+            throw new IllegalArgumentException("University name is not present");
+        if(!StringUtils.hasLength(email))
+            throw new IllegalArgumentException("Email is not present");
+        GenericHelper.emailValidation(email);
+        if(facultyList.isEmpty())
+            throw new IllegalArgumentException("No faculties are present");
+        return new University.Builder()
+                .setUniversityId(universityId)
+                .setUniversityName(universityName)
+                .setEmail(email)
+                .setFacultyList(facultyList)
+                .build();
     }
 }

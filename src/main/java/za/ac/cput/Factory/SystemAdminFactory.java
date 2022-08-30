@@ -9,14 +9,13 @@ import za.ac.cput.Util.GenericHelper;
 
 public class SystemAdminFactory {
 
-    public static SystemAdmin createSystemAdmin( String adminName, String adminEmail, String universityID) {
+    public static SystemAdmin createSystemAdmin( String adminName, String adminEmail) {
         String adminID = GenericHelper.generateID();
 
         SystemAdmin systemAdmin = new SystemAdmin.Builder()
                 .setAdminID(adminID)
                 .setAdminName(adminName)
                 .setAdminEmail(adminEmail)
-                .setUniversityID(universityID)
                 .build();
 
         return systemAdmin;

@@ -7,41 +7,42 @@
 
 package za.ac.cput.Entity;
 
+import java.util.List;
+
 public class Department {
 
     private String departmentID;
     private String departmentName;
     private String departmentEmail;
+    private String departmentTelephone;
+    private List<String> courseList;
 
     //private const
     private Department(Builder builder){
         this.departmentID = builder.departmentID;
         this.departmentName = builder.departmentName;
         this.departmentEmail = builder.departmentEmail;
+        this.departmentTelephone = builder.departmentTelephone;
+        this.courseList = builder.courseList;
     }
 
     public String getDepartmentID() {
         return departmentID;
     }
 
-    public void setDepartmentID(String departmentID) {
-        this.departmentID = departmentID;
-    }
-
     public String getDepartmentName() {
         return departmentName;
-    }
-
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
     }
 
     public String getDepartmentEmail() {
         return departmentEmail;
     }
 
-    public void setDepartmentEmail(String departmentEmail) {
-        this.departmentEmail = departmentEmail;
+    public String getDepartmentTelephone(){
+        return departmentTelephone;
+    }
+    public List<String> getCourseList(){
+        return courseList;
     }
 
     @Override
@@ -50,6 +51,8 @@ public class Department {
                 "departmentID='" + departmentID + '\'' +
                 ", departmentName='" + departmentName + '\'' +
                 ", departmentEmail='" + departmentEmail + '\'' +
+                ", departmentTelephone='" + departmentTelephone + '\'' +
+                ", courseList=" + courseList +
                 '}';
     }
 
@@ -57,6 +60,8 @@ public class Department {
         private String departmentID;
         private String departmentName;
         private String departmentEmail;
+        private String departmentTelephone;
+        private List<String> courseList;
 
         public Builder setDepartmentID(String departmentID) {
             this.departmentID = departmentID;
@@ -72,12 +77,22 @@ public class Department {
             this.departmentEmail = departmentEmail;
             return this;
         }
+        public Builder setDepartmentTelephone(String departmentTelephone){
+            this.departmentTelephone = departmentTelephone;
+            return this;
+        }
+        public Builder setCourseList(List<String> courseList){
+            this.courseList =courseList;
+            return this;
+        }
 
 
         public Builder copy(Department department){
             this.departmentID = department.departmentID;
             this.departmentName = department.departmentName;
             this.departmentEmail = department.departmentEmail;
+            this.departmentTelephone = department.departmentTelephone;
+            this.courseList = department.courseList;
             return this;
         }
 
