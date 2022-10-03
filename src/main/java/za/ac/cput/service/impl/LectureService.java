@@ -1,4 +1,4 @@
-package za.ac.cput.service;
+package za.ac.cput.service.impl;
 /*
     LecturerService.java
     Service for the Lecturer

@@ -1,4 +1,4 @@
-package za.ac.cput.service;
+package za.ac.cput.service.impl;
 
 /*
 CourseService.java
@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.entity.Course;
 import za.ac.cput.repository.impl.ICourseRepository;
-import za.ac.cput.service.impl.ICourseService;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -21,6 +20,17 @@ public class CourseService implements ICourseService {
 
     @Autowired
     private ICourseRepository   courseRepository;
+    private static CourseService service = null;
+
+    public static CourseService getService()
+    {
+        if(service == null)
+        {
+            service = new CourseService();
+        }
+
+        return service;
+    }
 
     @Override
     public Course create(Course course){return this.courseRepository.save(course);}

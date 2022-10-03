@@ -7,6 +7,8 @@ package za.ac.cput.service;
 import org.junit.jupiter.api.Test;
 import za.ac.cput.entity.Enrollment;
 import za.ac.cput.factory.EnrollmentFactory;
+import za.ac.cput.service.impl.EnrollmentService;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import static org.junit.jupiter.api.Assertions.*;

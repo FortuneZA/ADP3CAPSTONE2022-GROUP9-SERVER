@@ -1,4 +1,4 @@
-package za.ac.cput.service;
+package za.ac.cput.service.impl;
 
 /*
 SubjectService.java
@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.entity.Subject;
 import za.ac.cput.repository.impl.ISubjectRepository;
-import za.ac.cput.service.impl.ISubjectService;
 
 
 import java.util.Set;
@@ -22,6 +21,16 @@ public class SubjectService implements ISubjectService {
 
 @Autowired
 private ISubjectRepository subjectRepository;
+private static SubjectService service = null;
+
+public static SubjectService getService() {
+    if(service == null)
+    {
+        service = new SubjectService();
+    }
+
+    return service;
+}
 
     @Override
     public Subject create(Subject subject){return this.subjectRepository.save(subject);}

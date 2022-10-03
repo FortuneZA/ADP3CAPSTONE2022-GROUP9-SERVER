@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import za.ac.cput.entity.Subject;
 import za.ac.cput.factory.SubjectFactory;
+import za.ac.cput.service.impl.SubjectService;
 
 import static org.junit.jupiter.api.Assertions.*;
 

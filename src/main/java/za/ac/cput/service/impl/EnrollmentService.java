@@ -1,4 +1,4 @@
-package za.ac.cput.service;
+package za.ac.cput.service.impl;
 /*      EnrollmentService.java
 
         Author: Devon Daniels (217299822)
@@ -8,7 +8,6 @@ package za.ac.cput.service;
 
 import org.springframework.stereotype.Service;
 import za.ac.cput.entity.Enrollment;
-import za.ac.cput.service.impl.IEnrollmentService;
 
 import java.util.Set;
 

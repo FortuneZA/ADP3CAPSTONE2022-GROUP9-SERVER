@@ -1,4 +1,4 @@
-package za.ac.cput.service;
+package za.ac.cput.service.impl;
 /*      TutorService.java
 
         Author: Devon Daniels (217299822)
@@ -8,7 +8,6 @@ package za.ac.cput.service;
 
 import org.springframework.stereotype.Service;
 import za.ac.cput.entity.Tutor;
-import za.ac.cput.service.impl.ITutorService;
 
 import java.util.Set;
 
