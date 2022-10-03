@@ -8,16 +8,17 @@ Author: Mathew Fortuin (219069514)
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.entity.Subject;
 import za.ac.cput.factory.SubjectFactory;
 import za.ac.cput.service.impl.SubjectService;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class SubjectServiceTest {
 
-    private static SubjectService subjectService;
+    private static SubjectService subjectService = SubjectService.getService();
     private static Subject createdSubject = SubjectFactory.createSubject("ITS045","Information Systems 4",36,"AW12");
 
     @Test

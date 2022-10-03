@@ -8,16 +8,18 @@ Author: Mathew Fortuin (219069514)
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.entity.Course;
 import za.ac.cput.factory.CourseFactory;
 import za.ac.cput.service.impl.CourseService;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)
+
 public class CourseServiceTest {
 
-    private static CourseService courseService;
+    private static CourseService courseService = CourseService.getService();
     private static Course createdCourse = CourseFactory.createCourse("ICT:APP20","ICT: Applications Development","Fundamentals of application architecture in the software indsutry","IT02");
 
     @Test
