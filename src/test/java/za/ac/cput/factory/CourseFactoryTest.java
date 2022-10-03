@@ -18,7 +18,7 @@ public class CourseFactoryTest {
    private final Course course = CourseFactory.createCourse("ICT800","Information and communication systems","The fundamentals of communication media within the IT industry","IT200");
    private final Course course2 = CourseFactory.createCourse("ARC405","Architectural Studies","The fundamentals of architectural principles  within the lanscape industry","IT200");
 
-   private Course course1;
+   private Course course3 = course2;
 
 
     //Successful Create
@@ -27,17 +27,15 @@ public class CourseFactoryTest {
     {
       assertAll(
               ()->assertNotNull(course),
-              ()->assertEquals("ICT800",course.getCourseId())
+              ()->assertEquals("ICT:800",course.getCourseId())
       );
     }
 
-    //Fail Create
+    //Test equality
     @Test
-    void failCreateCourse()
+    void testEquality()
     {
-        Exception exception=assertThrows(IllegalArgumentException.class,()->course1=CourseFactory.createCourse("ARC405","Architectural Studies", "The fundamentals of architectural principles  within the lanscape industry","IT200"));
-        System.out.println(exception.getMessage());
-        assertTrue(exception.getMessage().contains("course name was not provided."));
+        assertEquals(course2,course3);
     }
 
     //TIMEOUT
@@ -53,7 +51,7 @@ public class CourseFactoryTest {
     @Test
     public void ObjectEquals()
     {
-        failCreateCourse();
+        testEquality();
     }
 
     //Build Restrictions

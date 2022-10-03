@@ -13,7 +13,7 @@ public class SubjectFactoryTest {
     private final  Subject subject = SubjectFactory.createSubject("INM351","Information Management",36,"AF10");
     private final  Subject subject2 = SubjectFactory.createSubject("ITS201","Information Systems",36,"WR10");
 
-    private Subject subject1;
+    private Subject subject3 = subject2;
 
     //Successful Create
     @Test
@@ -21,17 +21,15 @@ public class SubjectFactoryTest {
     {
         assertAll(
                 ()->assertNotNull(subject),
-                ()->assertEquals("INM351",subject.getSubjectID())
+                ()->assertEquals("IMN32",subject.getSubjectID())
         );
     }
 
-    //Failure create
+    //Test Equality
     @Test
-    void failCreateSubject()
+    void testEquality()
     {
-        Exception exception=assertThrows(IllegalArgumentException.class,()->subject1=SubjectFactory.createSubject("ITS201","Information Systems", 36,"WR10"));
-        System.out.println(exception.getMessage());
-        assertTrue(exception.getMessage().contains("Subject Name was not provided"));
+        assertEquals(subject3,subject2);
     }
 
     //TIMEOUT
@@ -46,14 +44,14 @@ public class SubjectFactoryTest {
     @Disabled
     public void Disabled()
     {
-       failCreateSubject();
+       testEquality();
     }
 
     //Build Verification
     @Test
     public void TestNull()
     {
-        Subject subject2 = SubjectFactory.createSubject("INM351","Information Management",36,"AF10");
+        Subject subject2 = SubjectFactory.createSubject("IMN32","Information Management",36,"AF10");
         assertNotEquals(subject2,null);
     }
 

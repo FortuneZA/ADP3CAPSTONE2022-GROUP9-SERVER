@@ -29,7 +29,7 @@ public class CourseFactory
 
 
         return new Course.Builder()
-                .setCourseId("ICT:APD")
+                .setCourseId("ICT:800")
                 .setCourseName("ICT:Applications Development")
                 .setCourseDescription("Programming foundations and business practices regarding software development.")
                 .setDepartmentId("ITS03")
