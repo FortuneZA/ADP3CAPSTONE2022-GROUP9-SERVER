@@ -5,8 +5,8 @@ package za.ac.cput.service;
 
  */
 import org.junit.jupiter.api.Test;
-import za.ac.cput.Entity.Tutor;
-import za.ac.cput.Factory.TutorFactory;
+import za.ac.cput.entity.Tutor;
+import za.ac.cput.factory.TutorFactory;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import static org.junit.jupiter.api.Assertions.*;

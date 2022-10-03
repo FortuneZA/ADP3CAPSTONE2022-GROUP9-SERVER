@@ -8,8 +8,8 @@ Date: 21/8/2022
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import za.ac.cput.Entity.Subject;
-import za.ac.cput.Repository.impl.ISubjectRepository;
+import za.ac.cput.entity.Subject;
+import za.ac.cput.repository.impl.ISubjectRepository;
 import za.ac.cput.service.impl.ISubjectService;
 
 

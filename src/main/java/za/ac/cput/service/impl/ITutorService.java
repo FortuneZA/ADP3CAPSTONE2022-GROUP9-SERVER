@@ -5,7 +5,7 @@ package za.ac.cput.service.impl;
     Author: Devon Daniels (217299822)
 
  */
-import za.ac.cput.Entity.Tutor;
+import za.ac.cput.entity.Tutor;
 import za.ac.cput.service.IService;
 import java.util.Set;
 

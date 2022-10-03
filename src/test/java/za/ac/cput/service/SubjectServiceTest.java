@@ -8,8 +8,8 @@ Author: Mathew Fortuin (219069514)
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import za.ac.cput.Entity.Subject;
-import za.ac.cput.Factory.SubjectFactory;
+import za.ac.cput.entity.Subject;
+import za.ac.cput.factory.SubjectFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -1,6 +1,6 @@
 package za.ac.cput.service.impl;
 
-import za.ac.cput.Entity.University;
+import za.ac.cput.entity.University;
 import za.ac.cput.service.IService;
 
 /*

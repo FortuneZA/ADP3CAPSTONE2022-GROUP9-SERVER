@@ -8,11 +8,10 @@ Date: 21/8/2022
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import za.ac.cput.Entity.Course;
-import za.ac.cput.Repository.impl.ICourseRepository;
+import za.ac.cput.entity.Course;
+import za.ac.cput.repository.impl.ICourseRepository;
 import za.ac.cput.service.impl.ICourseService;
 
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 

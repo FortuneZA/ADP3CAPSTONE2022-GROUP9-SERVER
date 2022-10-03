@@ -7,8 +7,7 @@ package za.ac.cput.service;
 
 
 import org.springframework.stereotype.Service;
-import za.ac.cput.Entity.Tutor;
-import za.ac.cput.Repository.TutorRepository;
+import za.ac.cput.entity.Tutor;
 import za.ac.cput.service.impl.ITutorService;
 
 import java.util.Set;

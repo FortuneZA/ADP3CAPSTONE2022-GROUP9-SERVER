@@ -8,8 +8,8 @@ package za.ac.cput.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import za.ac.cput.Entity.Lecturer;
-import za.ac.cput.Repository.impl.ILecturerRepository;
+import za.ac.cput.entity.Lecturer;
+import za.ac.cput.repository.impl.ILecturerRepository;
 import za.ac.cput.service.impl.ILecturerService;
 
 import java.util.Set;

@@ -1,6 +1,6 @@
 package za.ac.cput.service.impl;
 
-import za.ac.cput.Entity.Course;
+import za.ac.cput.entity.Course;
 import za.ac.cput.service.IService;
 
 import java.util.Set;
