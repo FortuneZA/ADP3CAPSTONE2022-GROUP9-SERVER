@@ -14,5 +14,5 @@ Date: 21/8/2022
 @Repository
 public interface ICourseRepository extends JpaRepository<Course,String> {
 
-    Set<Course> getAll();
+
 }

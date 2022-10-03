@@ -12,5 +12,5 @@ Date: 21/8/2022
  */
 public interface ISubjectRepository extends JpaRepository<Subject,String> {
 
-    Set<Subject> getAll();
+
 }
