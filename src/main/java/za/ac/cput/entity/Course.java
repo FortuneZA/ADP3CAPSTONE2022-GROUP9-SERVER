@@ -10,34 +10,26 @@ import java.util.List;
 */
 
 @Entity
-@Table(name = "course")
 public class Course {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    @Column(name = "course ID",nullable = false,unique = true,length =25)
     private String courseId;
-    @Column(name = "Course Name",nullable = false,unique = true,length =50)
     private  String courseName;
-    @Column(name = "Course Description",nullable = false,unique = true,length =250)
     private String courseDescription;
-    @Column(name = "Subject List",nullable = false,unique =false)
     @ElementCollection
     private List<String> subjectList;
-    @Column(name = "Department ID",nullable = false,unique = true,length =25)
     private String departmentId;
 
     //Default constructor
 
-    public Course() {
+    protected Course() {
 
     }
 
     //Builder Constructor
 
-    private Course(Builder builder) {
+    public Course(Builder builder) {
         this.courseId = builder.courseId;
         this.courseName = builder.courseName;
         this.courseDescription = builder.courseDescription;
@@ -77,9 +69,7 @@ public class Course {
         private List subjectList;
         private String departmentId;
 
-        public Builder() {
-            //Default constructor
-        }
+
 
         public Builder setCourseId(String courseId) {
             this.courseId = courseId;

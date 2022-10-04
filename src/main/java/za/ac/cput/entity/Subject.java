@@ -11,27 +11,22 @@ import javax.persistence.Table;
  Date: 15/03/2022
 */
 @Entity
-@Table(name = "subject")
 public class Subject {
 
 
     @Id
-    @Column(name = "Subject ID",nullable = false,unique = true,length =25)
     private String subjectID;
-    @Column(name = "Subject Name",nullable = false,unique = true,length =50)
     private String subjectName;
-    @Column(name = "Subject Credit",nullable = false,unique = true,length =10)
     private Integer subjectCredit;
-    @Column(name = "Lecturer ID",nullable = false,unique = true,length =10)
     private String lecturerID;
 
-    public Subject() {
+    protected Subject() {
 
     }
 
 //Builder Constructor
 
-    private Subject(Builder builder) {
+    public Subject(Builder builder) {
         this.subjectName = builder.subjectName;
         this.subjectCredit = builder.subjectCredit;
         this.subjectID = builder.subjectID;

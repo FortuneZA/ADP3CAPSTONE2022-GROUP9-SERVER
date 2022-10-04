@@ -1,4 +1,4 @@
-package za.ac.cput.controller;
+package za.ac.cput.controller.impl;
 
 public class FacultyController {
 }
