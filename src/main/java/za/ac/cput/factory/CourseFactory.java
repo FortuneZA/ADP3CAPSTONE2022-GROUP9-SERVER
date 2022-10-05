@@ -14,7 +14,7 @@ import java.util.LinkedList;
 
 public class CourseFactory
 {
-    public static Course createCourse(String courseId,String courseName,String courseDescription,String facultyID)
+    public static Course createCourse(String courseId,String courseName,String courseDescription,String departmentId)
     {
 
 
@@ -24,7 +24,7 @@ public class CourseFactory
              throw new IllegalArgumentException("course name was not provided.");
          if(!StringUtils.hasLength(courseDescription))
              throw new IllegalArgumentException("course description was not provided.");
-         if(!StringUtils.hasLength(facultyID))
+         if(!StringUtils.hasLength(departmentId))
              throw new IllegalArgumentException("faculty ID was not provided.");
 
 
