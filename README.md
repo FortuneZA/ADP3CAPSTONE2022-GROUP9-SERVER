@@ -18,11 +18,11 @@ Online Education
 | Student No | Name            | Assigned Task            |
 |------------|-----------------|--------------------------|
 | 2181478569 | Lefu Kumeke     |  System Admin            |
-| 217299822  | Devon Daniels   |  Enrollment|Tutot        |
-| 219115443  | Cameron Noemdo  |  Lecturer|University     |
-| 2190740540 | Mawande Langa   |  Department|Faculty      | 
-| 217238173  | Themba Khanyile |  Student|Test            |
-| 219069514  | Mathew Fortuin  |  Course|Subject          |
+| 217299822  | Devon Daniels   |  Enrollment - Tutor      |
+| 219115443  | Cameron Noemdo  |  Lecturer - University   |
+| 2190740540 | Mawande Langa   |  Department - Faculty    | 
+| 217238173  | Themba Khanyile |  Student - Test          |
+| 219069514  | Mathew Fortuin  |  Course - Subject        |
 
 
 ## Domain Model
