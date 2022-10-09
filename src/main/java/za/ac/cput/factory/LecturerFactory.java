@@ -17,8 +17,6 @@ public class LecturerFactory {
 
         if(!StringUtils.hasLength(firstName))
             throw new IllegalArgumentException("First name is not present");
-        if(!StringUtils.hasLength(middleName))
-            throw new IllegalArgumentException("Middle name is not present");
         if(!StringUtils.hasLength(lastName))
             throw new IllegalArgumentException("Last name is not present");
         if(!StringUtils.hasLength(lecturerEmail))
