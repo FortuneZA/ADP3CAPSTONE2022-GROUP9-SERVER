@@ -6,21 +6,15 @@ Author: Cameron Henry Noemdo (219115443)
 Date: 29 March 2022
 */
 
-import org.apache.commons.validator.routines.EmailValidator;
 import org.junit.jupiter.api.Test;
 import za.ac.cput.entity.University;
-
-import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UniversityFactoryTest {
-    List<String> list= Arrays.asList("Applied Science", "Informatics and Design", "Education");
+    private final University university=UniversityFactory.createUniversity("CPUT", "cput@cput.ac.za");
+    University university2;
 
-    private final University university=UniversityFactory.createUniversity("CPUT", "cput@cput.ac.za", list);
-    private final University university1=UniversityFactory.createUniversity("CPUT", "cputcput.ac.za", list);
-    private University university2;
 
     @Test
     void successCreateUniversity() {
@@ -33,18 +27,15 @@ public class UniversityFactoryTest {
 
     @Test
     void failCreateUniversity() {
-        Exception ex=assertThrows(IllegalArgumentException.class, ()->university2=UniversityFactory.createUniversity("", "cput@cput.ac.za", list));
+        Exception ex=assertThrows(IllegalArgumentException.class, ()->university2=UniversityFactory.createUniversity("", "cput.@cput.ac.za"));
         System.out.println(ex.getMessage());
         assertTrue(ex.getMessage().contains("University name"));
     }
 
     @Test
     void testValidEmail() {
-        assertTrue(EmailValidator.getInstance().isValid(university.getEmail()));
-    }
-
-    @Test
-    void testInvalidEmail() {
-        assertFalse(EmailValidator.getInstance().isValid(university1.getEmail()));
+        Exception exception=assertThrows(IllegalArgumentException.class,()->university2=UniversityFactory.createUniversity("CPUT","cputcput.ac.za"));
+        System.out.println(exception.getMessage());
+        assertTrue(exception.getMessage().contains("Invalid email"));
     }
 }

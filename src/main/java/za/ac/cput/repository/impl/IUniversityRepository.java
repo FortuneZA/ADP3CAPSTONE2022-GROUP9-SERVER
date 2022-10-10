@@ -1,9 +1,8 @@
 package za.ac.cput.repository.impl;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import za.ac.cput.entity.University;
-
-import java.util.Set;
 
 /*
     IUniversityRepository.java
@@ -11,6 +10,8 @@ import java.util.Set;
     Author: Cameron Henry Noemdo (219115443)
     Date: 21 August 2022
  */
+
+@Repository
 public interface IUniversityRepository extends JpaRepository<University,String> {
-    Set<University> getAll();
+
 }
