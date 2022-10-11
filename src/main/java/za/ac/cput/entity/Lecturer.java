@@ -7,7 +7,14 @@ Date: 29 March 2022
 */
 
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Lecturer")
 public class Lecturer {
+    @Id
     private String lecturerId;
     private String firstName;
 
@@ -24,6 +31,10 @@ public class Lecturer {
         this.lastName = builder.lastName;
         this.lecturerEmail = builder.lecturerEmail;
         this.departmentId= builder.departmentId;
+    }
+
+    protected Lecturer() {
+
     }
 
     public String getLecturerId() {

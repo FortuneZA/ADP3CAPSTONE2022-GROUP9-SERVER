@@ -11,6 +11,7 @@ import javax.persistence.Table;
  Date: 15/03/2022
 */
 @Entity
+@Table(name="subject")
 public class Subject {
 
 
