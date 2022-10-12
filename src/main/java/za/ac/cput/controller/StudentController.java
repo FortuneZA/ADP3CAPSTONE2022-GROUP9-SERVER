@@ -45,7 +45,7 @@ public class StudentController
     @DeleteMapping("/delete/{id}")
     public Boolean delete(@PathVariable String id)
     {
-        return courseService.delete(id);
+        return studentService.delete(id);
     }
 
     //getAll
