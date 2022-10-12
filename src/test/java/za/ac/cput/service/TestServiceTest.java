@@ -18,7 +18,7 @@ class TestServiceTest
 {
 
     private static TestService testService = TestService.getService();
-    private static Test createdTest = TestFactory.createTest("ICT:APP20","ICT: Applications Development","Fundamentals of application architecture in the software indsutry","IT02");
+    private static Test createdTest = TestFactory.createTest("AP163","31 October 2022","KNaidoo147","Application Development Paper 1 ,2 hours,09:00 am-11:00am",);
 
     @Test
     void a_create(){
@@ -40,10 +40,10 @@ class TestServiceTest
     @Test
     void c_update(){
 
-        Test updated = new Test.Builder().copy(createdTest).setlectureId("IT30").build();
+        Test updated = new Test.Builder().copy(createdTest).setlectureId("RBurger158").build();
         assertNotNull(courseService.update(updated));
 
-        System.out.println("lecture ID: "+updated.getlectureId()+"\nOld Department ID: "+createdTest.getlectureId());
+        System.out.println("lecture ID: "+updated.getlectureId()+"\nOld Lecture ID: "+createdTest.getlectureId());
 
     }
 
