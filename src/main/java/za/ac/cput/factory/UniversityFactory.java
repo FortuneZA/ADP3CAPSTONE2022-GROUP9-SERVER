@@ -10,10 +10,8 @@ import org.springframework.util.StringUtils;
 import za.ac.cput.entity.University;
 import za.ac.cput.util.GenericHelper;
 
-import java.util.List;
-
 public class UniversityFactory {
-    public static University createUniversity(String universityName, String email, List<String> facultyList)
+    public static University createUniversity(String universityName, String email)
     {
         String universityId=GenericHelper.generateID();
 
@@ -22,13 +20,13 @@ public class UniversityFactory {
         if(!StringUtils.hasLength(email))
             throw new IllegalArgumentException("Email is not present");
         GenericHelper.emailValidation(email);
-        if(facultyList.isEmpty())
-            throw new IllegalArgumentException("No faculties are present");
+//        if(facultyList.isEmpty())
+//            throw new IllegalArgumentException("No faculties are present");
         return new University.Builder()
                 .setUniversityId(universityId)
                 .setUniversityName(universityName)
                 .setEmail(email)
-                .setFacultyList(facultyList)
+                //.setFacultyList(facultyList)
                 .build();
     }
 }

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.entity.University;
 import za.ac.cput.repository.impl.IUniversityRepository;
-import za.ac.cput.service.impl.IUniversityService;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -28,12 +27,14 @@ public class UniversityService implements IUniversityService {
 
     @Override
     public University read(String universityName) {
-        return this.universityRepository.findById(universityName).orElseGet(null);
+        return this.universityRepository.findById(universityName).orElse(null);
     }
 
     @Override
     public University update(University university) {
-        return create(university);
+        if(this.universityRepository.existsById(university.getUniversityId()))
+            return this.universityRepository.save(university);
+        return null;
     }
 
     @Override

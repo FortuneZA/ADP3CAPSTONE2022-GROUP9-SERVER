@@ -6,28 +6,35 @@ Author: Cameron Henry Noemdo (219115443)
 Date: 29 March 2022
 */
 
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="University")
 public class University {
+    @Id
     private String universityId;
     private String universityName;
     private String email;
 
-    private List<String> facultyList;
+    //private List<String> facultyList;
 
     public University(Builder builder) {
         this.universityId=builder.universityId;
         this.universityName= builder.universityName;
         this.email=builder.email;
-        this.facultyList=builder.facultyList;
+        //this.facultyList=builder.facultyList;
     }
 
-    public static class Builder
-    {
+    protected University() {
 
+    }
+
+    public static class Builder {
         private String universityName, email, universityId;
 
-        private List<String> facultyList;
+        //private List<String> facultyList;
 
         public Builder setUniversityId(String universityId)
         {
@@ -46,17 +53,17 @@ public class University {
             return this;
         }
 
-        public Builder setFacultyList(List<String> facultyList) {
-            this.facultyList = facultyList;
-            return this;
-        }
+//        public Builder setFacultyList(List<String> facultyList) {
+//            this.facultyList = facultyList;
+//            return this;
+//        }
 
         public Builder copy(University university)
         {
             this.universityId=university.universityId;
             this.universityName=university.universityName;
             this.email=university.email;
-            this.facultyList=university.facultyList;
+            //this.facultyList=university.facultyList;
             return this;
         }
 
@@ -78,9 +85,20 @@ public class University {
         return email;
     }
 
-    public List<String> getFacultyList() {
-        return facultyList;
-    }
+//    public List<String> getFacultyList() {
+//        return facultyList;
+//    }
+
+//    @Override
+//    public String toString() {
+//        return "University{" +
+//                "universityId='" + universityId + '\'' +
+//                ", universityName='" + universityName + '\'' +
+//                ", email='" + email + '\'' +
+//                ", facultyList=" + facultyList +
+//                '}';
+//    }
+
 
     @Override
     public String toString() {
@@ -88,7 +106,6 @@ public class University {
                 "universityId='" + universityId + '\'' +
                 ", universityName='" + universityName + '\'' +
                 ", email='" + email + '\'' +
-                ", facultyList=" + facultyList +
                 '}';
     }
 }
