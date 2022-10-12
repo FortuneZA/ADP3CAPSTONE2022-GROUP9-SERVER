@@ -18,7 +18,7 @@ class StudentServiceTest
 {
 
    private static CourseService courseService = CourseService.getService();
-    private static Course createdCourse = CourseFactory.createCourse("217238173","Themba","Khanyile","217238173@mycput.ac.za","IT02");
+    private static Course createdCourse = CourseFactory.createCourse("217238173","Themba","Khanyile","217238173@mycput.ac.za","ADP363S");
 
     @Test
     void a_create(){
@@ -33,14 +33,14 @@ class StudentServiceTest
     void b_read(){
         Student read = studentService.read(createdStudent.getStudentId());
         assertNotNull(read);
-        System.out.println("Reading CourseID: "+read+"\n");
+        System.out.println("StudentID: "+read+"\n");
 
     }
 
     @Test
     void c_update(){
 
-        Student updated = new Student.Builder().copy(createdStudent).setCourseId("IT30").build();
+        Student updated = new Student.Builder().copy(createdStudent).setCourseId("INM363L").build();
         assertNotNull(studentService.update(updated));
 
        
