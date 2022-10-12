@@ -40,7 +40,7 @@ class StudentServiceTest
     @Test
     void c_update(){
 
-        Student updated = new Student.Builder().copy(createdStudent).setDepartmentId("IT30").build();
+        Student updated = new Student.Builder().copy(createdStudent).setCourseId("IT30").build();
         assertNotNull(studentService.update(updated));
 
        
