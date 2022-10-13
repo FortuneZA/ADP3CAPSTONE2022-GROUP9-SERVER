@@ -7,15 +7,25 @@
 
 package za.ac.cput.entity;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.List;
-
+@Entity
+@Table(name = "department")
 public class Department {
-
+    @Id
     private String departmentID;
     private String departmentName;
     private String departmentEmail;
     private String departmentTelephone;
+    @ElementCollection
     private List<String> courseList;
+
+    protected Department(){
+
+    }
 
     //private const
     private Department(Builder builder){
