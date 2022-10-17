@@ -9,56 +9,64 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.entity.SystemAdmin;
 import za.ac.cput.repository.impl.ISystemAdminRepository;
+import za.ac.cput.service.impl.ISystemAdminService;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Service
 public class SystemAdminService implements ISystemAdminService {
 
-    private static SystemAdminService service= null;
+
 
     @Autowired
-    private ISystemAdminRepository repository;
+    private ISystemAdminRepository isystemAdminRepository;
+
+    private static SystemAdminService service = null;
 
     public static SystemAdminService getService()
     {
-        if (service == null)
+        if(service == null)
         {
             service = new SystemAdminService();
         }
+
         return service;
+    }
+
+
+    @Override
+    public Set<SystemAdmin> getAll() {
+        return this.isystemAdminRepository.findAll().stream().collect(Collectors.toSet());
     }
 
     @Override
     public SystemAdmin create(SystemAdmin systemAdmin) {
-        return this.repository.save(systemAdmin);
+        return this.isystemAdminRepository.save(systemAdmin);
     }
 
     @Override
     public SystemAdmin read(String adminID) {
-        return this.repository.findById(adminID).orElse(null);
+        return this.isystemAdminRepository.findById(adminID).orElseGet(null);
     }
 
     @Override
     public SystemAdmin update(SystemAdmin systemAdmin) {
 
-        if(this.repository.existsById(systemAdmin.getAdminID()))
-            return this.repository.save(systemAdmin);
+        if(this.isystemAdminRepository.existsById(systemAdmin.getAdminID())){
+            return this.isystemAdminRepository.save(systemAdmin);}
         return null;
 
     }
 
     @Override
     public boolean delete(String adminID) {
-        this.repository.deleteById(adminID);
-        if(this.repository.existsById(adminID))
+        this.isystemAdminRepository.deleteById(adminID);
+        if(this.isystemAdminRepository.existsById(adminID))
             return false;
         else
             return true;
     }
 
-    @Override
-    public Set<SystemAdmin> getAll() {
-        return this.repository.findAll().stream().collect(Collectors.toSet());
-    }
+
 }

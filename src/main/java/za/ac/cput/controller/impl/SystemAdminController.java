@@ -7,25 +7,24 @@ import za.ac.cput.entity.SystemAdmin;
 import za.ac.cput.factory.SystemAdminFactory;
 import za.ac.cput.service.impl.SystemAdminService;
 
-import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping
+@RequestMapping("/systemAdmin")
 public class SystemAdminController {
 
     @Autowired
-    private SystemAdminService systemAdminService;
+    SystemAdminService systemAdminService;
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public SystemAdmin create(SystemAdmin systemAdmin) {
+    @PostMapping("/create")
+    public SystemAdmin create(@RequestBody SystemAdmin systemAdmin) {
         SystemAdmin newSystemAdmin = SystemAdminFactory.createSystemAdmin(systemAdmin.getAdminName(), systemAdmin.getAdminEmail());
     return systemAdminService.create(newSystemAdmin);
     }
 
-    @GetMapping("/read")
-    public SystemAdmin read(@RequestBody SystemAdmin systemAdmin){
-        return systemAdminService.read(systemAdmin.getAdminID());
+    @GetMapping("/read/{id}")
+    public SystemAdmin read(@PathVariable String id){
+        return systemAdminService.read(id);
     }
 
     @PostMapping("/update")
@@ -33,7 +32,7 @@ public class SystemAdminController {
         return systemAdminService.update(systemAdmin);
     }
 
-    @PostMapping
+    @DeleteMapping("/delete/{systemAdmin}")
     public void delete(@RequestBody SystemAdmin systemAdmin){
         systemAdminService.delete(systemAdmin.getAdminID());
     }
