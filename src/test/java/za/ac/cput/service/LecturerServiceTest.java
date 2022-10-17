@@ -1,6 +1,8 @@
 package za.ac.cput.service;
 /*
-
+LecturerServiceTest.java
+Test class for the Lecturer Service
+Author: Cameron Henry Noemdo (219115443)
  */
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
