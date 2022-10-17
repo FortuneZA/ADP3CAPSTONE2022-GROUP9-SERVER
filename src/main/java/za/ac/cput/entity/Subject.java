@@ -1,9 +1,6 @@
 package za.ac.cput.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /* Subject.java
  Class for the subject entity
@@ -16,6 +13,7 @@ public class Subject {
 
 
     @Id
+
     private String subjectID;
     private String subjectName;
     private Integer subjectCredit;
@@ -54,6 +52,26 @@ public class Subject {
     public String getLecturerID() {
         return lecturerID;
     }
+
+
+    //Setters
+
+    public void setSubjectID(String subjectID) {
+        this.subjectID = subjectID;
+    }
+
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+    }
+
+    public void setSubjectCredit(Integer subjectCredit) {
+        this.subjectCredit = subjectCredit;
+    }
+
+    public void setLecturerID(String lecturerID) {
+        this.lecturerID = lecturerID;
+    }
+
 
     //Builder Class
 

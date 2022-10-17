@@ -10,8 +10,10 @@ package za.ac.cput.controller.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.entity.Course;
+import za.ac.cput.repository.impl.ICourseRepository;
 import za.ac.cput.service.impl.CourseService;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -19,36 +21,45 @@ import java.util.Set;
 public class CourseController {
 
     @Autowired
-    private CourseService courseService;
+    private ICourseRepository courseRepository;
 
     //Create course
-    @RequestMapping(value ="/create",method = RequestMethod.POST)
+    @PostMapping(value ="/create")
     public Course create(@RequestBody Course course)
     {
-        return courseService.create(course);
+        return courseRepository.save(course);
     }
 
     //Read course
-    @GetMapping("/read/{id}")
-    public Course read(@PathVariable String id)
-    {
-        return courseService.read(id);
-    }
+    @GetMapping("/read")
+    List<Course> getCourses(){return courseRepository.findAll();}
 
     //Update course
-    @PostMapping("/update")
-    public Course update(@RequestBody Course course)
+    @PutMapping("/update/{id}")
+    Course updateCourse(@RequestBody Course newCourse,@PathVariable String id)
     {
-        return courseService.update(course);
-    }
+        return courseRepository.findById(id)
+                .map(course -> {
+                    course.setCourseId(newCourse.getCourseId());
+                    course.setCourseName((newCourse.getCourseName()));
+                    course.setCourseDescription((newCourse.getCourseDescription()));
+                    course.setDepartmentId(newCourse.getDepartmentId());
 
+                    return courseRepository.save(course);
+                }).orElseThrow(()->new RuntimeException());
+    }
     //Delete course
     @DeleteMapping("/delete/{id}")
-    public Boolean delete(@PathVariable String id)
+   String deleteCourse(@PathVariable String id)
     {
-        return courseService.delete(id);
+        if(!courseRepository.existsById(id))
+    {
+        throw new IllegalArgumentException("Course not found.");
+    }
+        courseRepository.deleteById(id);
+        return "Course with id: "+id+"has been deleted successfully.";
     }
 
     //getAll
-    public Set<Course> getAll() {return courseService.getAll();}
+  //  public Set<Course> getAll() {return courseService.getAll();}
 }
