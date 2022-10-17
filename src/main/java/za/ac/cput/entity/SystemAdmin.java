@@ -5,43 +5,30 @@ package za.ac.cput.entity;
         Date :03 April 2022
         */
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@SuppressWarnings("ALL")
+@Entity
+@Table(name="systemAdmin")
 public class SystemAdmin {
 
+    @Id
     private String adminID;
     private String adminName;
     private String adminEmail;
 
 
-    private SystemAdmin(Builder builder) {
+    public SystemAdmin(Builder builder) {
         this.adminID = builder.adminID;
         this.adminName = builder.adminName;
         this.adminEmail = builder.adminEmail;
     }
 
-    @Override
-    public String toString() {
-        return "SystemAdmin{" +
-                "adminID='" + adminID + '\'' +
-                ", adminName='" + adminName + '\'' +
-                ", adminEmail='" + adminEmail + '\'' +
-                '}';
-    }
+    protected SystemAdmin() {}
 
-    public String getAdminID() {
-        return adminID;
-    }
-
-    public String getAdminName() {
-        return adminName;
-    }
-
-    public String getAdminEmail() {
-        return adminEmail;
-    }
-
-
-
-    // Builder Class
     public static class Builder {
         private String adminID;
         private String adminName;
@@ -63,15 +50,6 @@ public class SystemAdmin {
             return this;
 
         }
-
-
-
-        public SystemAdmin build() {
-            return new SystemAdmin(this);
-
-
-        }
-
         public Builder copy(SystemAdmin systemAdmin){
             this.adminID = systemAdmin.adminID;
             this.adminName = systemAdmin.adminName;
@@ -79,5 +57,36 @@ public class SystemAdmin {
             return this;
 
         }
+
+
+        public SystemAdmin build(){
+            return new SystemAdmin(this);
+        }
+
+
+    }
+
+    public String getAdminID() {
+        return adminID;
+    }
+
+    public String getAdminName() {
+        return adminName;
+    }
+
+    public String getAdminEmail() {
+        return adminEmail;
+    }
+
+
+
+
+    @Override
+    public String toString() {
+        return "SystemAdmin{" +
+                "adminID='" + adminID + '\'' +
+                ", adminName='" + adminName + '\'' +
+                ", adminEmail='" + adminEmail + '\'' +
+                '}';
     }
 }
