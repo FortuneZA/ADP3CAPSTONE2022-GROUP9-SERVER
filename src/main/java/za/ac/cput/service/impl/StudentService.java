@@ -6,32 +6,40 @@ package za.ac.cput.service.impl;
  */
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import za.ac.cput.Entity.Student;
-import za.ac.cput.Repository.impl.IStudentRepository;
-import za.ac.cput.service.impl.IStudentService;
-
-import java.util.List;
+import za.ac.cput.entity.Student;
+import za.ac.cput.repository.impl.IStudentRepository;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class StudentService implements studentRepository
-{
+public class StudentService implements IStudentService {
+
 
     @Autowired
     private IStudentRepository   studentRepository;
+    private static StudentService service = null;
+
+    public static StudentService getService()
+    {
+        if(service == null)
+        {
+            service = new StudentService();
+        }
+
+        return service;
+    }
 
     @Override
     public Student create(Student student)
-{
-return this.studentRepository.save(student);
-}
+    {
+        return this.studentRepository.save(student);
+    }
 
     @Override
     public Student read(String studentId)
-{
-return this.studentRepository.findById(studentId).orElseGet(null);
-}
+    {
+        return (Student) this.studentRepository.findById(studentId).orElseGet(null);
+    }
 
     @Override
     public Student update(Student student)
@@ -53,11 +61,7 @@ return this.studentRepository.findById(studentId).orElseGet(null);
         else return true;
     }
 
-  @Override
-  public Set<Student> getAll() 
-{
-return this.studentRepository.findAll().stream().collect(Collectors.toSet()); 
-}
+    @Override
+    public Set<Object> getAll() {return this.studentRepository.findAll().stream().collect(Collectors.toSet()); }
 
 }
-

@@ -1,6 +1,10 @@
 package za.ac.cput.controller;
-
-
+/*Name:Themba
+ *Surname:Khanyile
+ *StudentNumber:217238173
+ *Date: 13 October 2022
+ */
+/*
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -8,25 +12,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
-import za.ac.cput.entity.Course;
+import za.ac.cput.entity.Test;
 import za.ac.cput.factory.CourseFactory;
-
-import javax.xml.ws.Response;
-
+import za.ac.cput.factory.TestFactory;
 import static org.junit.jupiter.api.Assertions.*;
-/*
- * CourseControllerTest.java
- * Test for the Course controller
- * Author: Mathew Fortuin (219069514)
- * Date: 5 October 2022
- */
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
     @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class CourseControllerTest {
+class TestControllerTest {
 
-    private static Course course = new CourseFactory().createCourse("APPDEV01","ICT APPLICATION DEVELOPMENT","Fundamentals of Software Development","ICT01");
-    private Course testCourse;
+    private static Test test = new TestFactory().createTest("APPDEV01","ICT APPLICATION DEVELOPMENT","Fundamentals of Software Development","ICT01");
+    private Test testCourse;
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -37,23 +33,23 @@ class CourseControllerTest {
     void a_create(){
         String url = BASE_URL + "/create";
         System.out.println("URL: "+url);
-        ResponseEntity<Course> postResponse = restTemplate.postForEntity(url,course,Course.class);
+        ResponseEntity<Test> postResponse = restTemplate.postForEntity(url,test,Test.class);
 
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         assertEquals(postResponse.getStatusCode(), HttpStatus.OK);
-        assertEquals(course.getCourseId(),postResponse.getBody().getCourseId());
+        assertEquals(test.getTestId(),postResponse.getBody().getTestId());
         testCourse = postResponse.getBody();
         System.out.println("Course created: "+testCourse.toString());
     }
 
     @Test
     void b_read(){
-        String url = BASE_URL +"/read/"+course.getCourseId();
+        String url = BASE_URL +"/read/"+test.getTestId();
         System.out.println("URL: "+url);
-        ResponseEntity<Course> response = restTemplate.getForEntity(url,Course.class);
+        ResponseEntity<Test> response = restTemplate.getForEntity(url,Test.class);
 
-        assertEquals(course.getCourseId(),response.getBody().getCourseId());
+        assertEquals(test.getTestId(),response.getBody().getTestId());
 
 
         testCourse = response.getBody();
@@ -65,13 +61,13 @@ class CourseControllerTest {
 
         String url = BASE_URL + "/update/";
         System.out.println("URL: " + url);
-        Course updateCourse = new Course.Builder().copy(course).setCourseId("ARCH01").setCourseName("Architecture Development").setCourseDescription("Fundamentals of architecture studies").setDepartmentId("SJC2").build();
-        ResponseEntity<Course> postResponse = restTemplate.postForEntity(url,updateCourse,Course.class);
+        Test updateTest = new Test.Builder().copy(test).setTestId("ARCH01").setCourseName("Architecture Development").setCourseDescription("Fundamentals of architecture studies").setDepartmentId("SJC2").build();
+        ResponseEntity<Test> postResponse = restTemplate.postForEntity(url,updateTest,Test.class);
 
         assertNotNull(postResponse.getBody());
 
         testCourse = postResponse.getBody();
-        System.out.println("Course Updated: "+testCourse.toString());
+        System.out.println("Test Updated: "+testCourse.toString());
 
     }
 
@@ -84,7 +80,7 @@ class CourseControllerTest {
         HttpEntity<String> entity = new HttpEntity(null,headers);
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET,entity,String.class);
 
-        System.out.println("Show all Courses: ");
+        System.out.println("Show all Test: ");
         System.out.println(response);
         System.out.println(response.getBody());
 
@@ -92,3 +88,4 @@ class CourseControllerTest {
 
 
 }
+*/

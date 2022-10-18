@@ -1,6 +1,10 @@
 package za.ac.cput.controller;
 
-
+/*Name:Themba
+ *Surname:Khanyile
+ *StudentNumber:217238173
+ *Date: 13 October 2022
+ */
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -8,11 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
-import za.ac.cput.entity.Course;
-import za.ac.cput.factory.CourseFactory;
-
-import javax.xml.ws.Response;
-
+import za.ac.cput.entity.Student;
+import za.ac.cput.factory.StudentFactory;
 import static org.junit.jupiter.api.Assertions.*;
 /*
  * CourseControllerTest.java
@@ -23,10 +24,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
     @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class CourseControllerTest {
+class StudentControllerTest {
 
-    private static Course course = new CourseFactory().createCourse("APPDEV01","ICT APPLICATION DEVELOPMENT","Fundamentals of Software Development","ICT01");
-    private Course testCourse;
+    private static Student student = new StudentFactory().createStudent("John","Doe","johndoe@cput.ac.za" ,"ICT01");
+    private Student testStudent;
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -37,27 +38,27 @@ class CourseControllerTest {
     void a_create(){
         String url = BASE_URL + "/create";
         System.out.println("URL: "+url);
-        ResponseEntity<Course> postResponse = restTemplate.postForEntity(url,course,Course.class);
+        ResponseEntity<Student> postResponse = restTemplate.postForEntity(url,student,Student.class);
 
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         assertEquals(postResponse.getStatusCode(), HttpStatus.OK);
-        assertEquals(course.getCourseId(),postResponse.getBody().getCourseId());
-        testCourse = postResponse.getBody();
-        System.out.println("Course created: "+testCourse.toString());
+        assertEquals(student.getStudentId(),postResponse.getBody().getStudentId());
+        testStudent = postResponse.getBody();
+        System.out.println("Course created: "+testStudent.toString());
     }
 
     @Test
     void b_read(){
-        String url = BASE_URL +"/read/"+course.getCourseId();
+        String url = BASE_URL +"/read/"+student.getStudentId();
         System.out.println("URL: "+url);
-        ResponseEntity<Course> response = restTemplate.getForEntity(url,Course.class);
+        ResponseEntity<Student> response = restTemplate.getForEntity(url,Student.class);
 
-        assertEquals(course.getCourseId(),response.getBody().getCourseId());
+        assertEquals(student.getStudentId(),response.getBody().getStudentId());
 
 
-        testCourse = response.getBody();
-        System.out.println("Reading: "+testCourse.toString());
+        testStudent = response.getBody();
+        System.out.println("Reading: "+testStudent.toString());
     }
 
     @Test
@@ -65,13 +66,13 @@ class CourseControllerTest {
 
         String url = BASE_URL + "/update/";
         System.out.println("URL: " + url);
-        Course updateCourse = new Course.Builder().copy(course).setCourseId("ARCH01").setCourseName("Architecture Development").setCourseDescription("Fundamentals of architecture studies").setDepartmentId("SJC2").build();
-        ResponseEntity<Course> postResponse = restTemplate.postForEntity(url,updateCourse,Course.class);
+        Student updateStudent = new Student.Builder().copy(student).setStudentId("ARCH01").setFirstName("Lindiwe").setLastName("Mhlongo").setStudentEmail("lindiwe@mycput.ac.za").build();
+        ResponseEntity<Student> postResponse = restTemplate.postForEntity(url,updateStudent,Student.class);
 
         assertNotNull(postResponse.getBody());
 
-        testCourse = postResponse.getBody();
-        System.out.println("Course Updated: "+testCourse.toString());
+        testStudent = postResponse.getBody();
+        System.out.println("Student Updated: "+testStudent.toString());
 
     }
 
@@ -84,7 +85,7 @@ class CourseControllerTest {
         HttpEntity<String> entity = new HttpEntity(null,headers);
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET,entity,String.class);
 
-        System.out.println("Show all Courses: ");
+        System.out.println("Show all Students: ");
         System.out.println(response);
         System.out.println(response.getBody());
 

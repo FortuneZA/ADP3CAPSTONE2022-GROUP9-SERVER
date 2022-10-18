@@ -1,6 +1,5 @@
 package za.ac.cput.controller.impl;
 
-package za.ac.cput.controller.impl;
 
 /*
  * Name:Themba
