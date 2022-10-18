@@ -9,14 +9,7 @@ import java.util.Set;
  *Date: 13 October 2022
  */
 
-public interface IStudentService extends IStudentService<Student,String>{
-    Student create(Student student);
-
-    Object read(String studentId);
-
-    Student update(Student student);
-
-    boolean delete(String id);
-
+public interface IStudentService extends IService<Student,String>{
+  
     Set<Object> getAll();
 }
