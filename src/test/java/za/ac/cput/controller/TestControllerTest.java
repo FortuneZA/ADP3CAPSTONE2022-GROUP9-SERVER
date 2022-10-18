@@ -26,7 +26,7 @@ class TestControllerTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
-    private final String BASE_URL = "http://localhost:8080/course";
+    private final String BASE_URL = "http://localhost:8080/test";
 
 
     @Test
