@@ -1,14 +1,21 @@
 package za.ac.cput.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 /*
 Student.java
 Entity for Student
 Author: Themba Kanyile 217238173
 Date : 23 March 2022
  */
+
+@Entity
+@Table(name="Student")
 public class Student
 {
 
-
+@Id
         private String studentId;
         private String firstName;
         private String lastName;
@@ -23,6 +30,10 @@ public class Student
             this.courseID = builder.courseID;
 
         }
+        
+    protected Student() {
+
+    }
 
         @Override
         public String toString() {
@@ -63,7 +74,8 @@ public class Student
             private String lastName;
             private String studentEmail;
             private String courseID;
-
+                
+   
             public Builder setStudentId(String studentId) {
                 this.studentId = studentId;
                 return this;
