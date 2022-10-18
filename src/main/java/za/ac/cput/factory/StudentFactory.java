@@ -8,7 +8,7 @@ Date : 23 March 2022
  */
 public class StudentFactory
 {
-    public static Student createStudent(String firstName, String lastName, String studentEmail, String courseID){
+    public static Student createStudent(String firstName,String middleName, String lastName, String studentEmail, String courseID){
        if(!GenericHelper.emailValidation(studentEmail))
            return null;
 
@@ -16,6 +16,7 @@ public class StudentFactory
         Student student = new Student.Builder()
                 .setStudentId(studentID)
                 .setFirstName(firstName)
+                .setMiddleName(middleName)
                 .setLastName(lastName)
                 .setStudentEmail(studentEmail)
                 .setCourseID(courseID)

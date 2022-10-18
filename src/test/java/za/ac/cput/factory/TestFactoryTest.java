@@ -2,7 +2,7 @@ package za.ac.cput.factory;
 /*
 TestFactoryTest.java
 Test for TestFactory
-Author: Themba Kanyile 217238173
+Author: Themba Khanyile 217238173
 Date : 23 March 2022
  */
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,9 +21,8 @@ public class TestFactoryTest
 
     @org.junit.jupiter.api.Test
     public void createTest() {
-        Test test1 = TestFactory.createTest("0024", "20 March 2022", "ADP3 test");
-        Test test2 = TestFactory.createTest("0025", "4 April 2022", "Project Management test");
-
+        Test test1 = TestFactory.createTest("RB261","ADP October summative Test","30 October 2022","2 Hours",50);
+        Test test2 = TestFactory.createTest("KN331","ITS November final Test","7 November 2022","1.2 hOURS",60);
         System.out.println(test1.toString());
         System.out.println(test2.toString());
         assertNotNull(test1);
@@ -33,8 +32,8 @@ public class TestFactoryTest
 
     @BeforeEach
     void setup() {
-        Test test1 = TestFactory.createTest("0024", "20 March 2022", "ADP3 test");
-        Test test2 = TestFactory.createTest("0025", "4 April 2022", "Project Managementtest");
+        Test test1 = TestFactory.createTest("RB261","ADP October summative Test","30 October 2022","2 Hours",50);
+        Test test2 = TestFactory.createTest("KN331","ITS November final Test","7 November 2022","1.2 hOURS",60);
     }
 
 

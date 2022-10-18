@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class StudentServiceTest {
 
     private static StudentService studentService = StudentService.getService();
-    private static Student createdStudent = StudentFactory.createStudent("John","Doe","johndoe@cput.ac.za","ADT262S");
+    private static Student createdStudent = StudentFactory.createStudent("John","Doe","smith","johndoe@cput.ac.za","268RS");
 
     @Test
     void a_create(){

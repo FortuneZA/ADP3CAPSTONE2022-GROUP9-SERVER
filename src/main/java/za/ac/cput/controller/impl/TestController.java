@@ -1,7 +1,5 @@
 package za.ac.cput.controller.impl;
 
-
-
 /*
  * Name:Themba
  *Surname:Khanyile
@@ -11,8 +9,8 @@ package za.ac.cput.controller.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import za.ac.cput.entity.Course;
-import za.ac.cput.service.impl.CourseService;
+import za.ac.cput.entity.Test;
+import za.ac.cput.service.impl.TestService;
 
 import java.util.Set;
 
@@ -21,36 +19,35 @@ import java.util.Set;
 public class TestController {
 
     @Autowired
-    private CourseService courseService;
+    private TestService testService;
 
-    //Create course
+
     @RequestMapping(value ="/create",method = RequestMethod.POST)
-    public Course create(@RequestBody Course course)
+    public Test create(@RequestBody Test test )
     {
-        return courseService.create(course);
+        return testService.create(test);
     }
 
-    //Read course
+
     @GetMapping("/read/{id}")
-    public Course read(@PathVariable String id)
+    public Test read(@PathVariable String id)
     {
-        return courseService.read(id);
+        return testService.read(id);
     }
 
-    //Update course
     @PostMapping("/update")
-    public Course update(@RequestBody Course course)
+    public Test update(@RequestBody Test test )
     {
-        return courseService.update(course);
+        return testService.update(test);
     }
 
-    //Delete course
+
     @DeleteMapping("/delete/{id}")
     public Boolean delete(@PathVariable String id)
     {
-        return courseService.delete(id);
+        return testService.delete(id);
     }
 
     //getAll
-    public Set<Course> getAll() {return courseService.getAll();}
+    public Set<Object> getAll() {return testService.getAll();}
 }

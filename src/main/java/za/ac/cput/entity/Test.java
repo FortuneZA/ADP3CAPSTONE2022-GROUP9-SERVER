@@ -8,16 +8,24 @@ public class Test
 
 {
     private String testId;
+
+    private String subjectId;
+
+    private String testName;
+
     private String testDate;
-    private String lecturerId;
-    private String testInfo;
+
+    private String duration;
+    private int resultInPercent;
 
 
     private Test(Test.Builder builder) {
         this.testId = builder.testId;
+        this.subjectId = builder.subjectId;
+        this.testName = builder.testName;
         this.testDate = builder.testDate;
-        this.lecturerId = builder.lecturerId;
-        this.testInfo = builder.testInfo;
+        this.duration = builder.duration;
+        this.resultInPercent = builder.resultInPercent;
 
     }
 
@@ -25,9 +33,11 @@ public class Test
     public String toString() {
         return "Test{" +
                 "testID='" + testId + '\'' +
+                ", subjectId='" + subjectId + '\'' +
+                ", testName='" + testName+ '\'' +
                 ", testDate='" + testDate + '\'' +
-                ", lecturerId='" + lecturerId + '\'' +
-                ", testInfo='" + testInfo + '\'' +
+                ", duration='" + duration + '\'' +
+                ", resultInPercent='" + resultInPercent + '\'' +
                 '}';
     }
 
@@ -35,23 +45,32 @@ public class Test
         return testId;
     }
 
+    public String getSubjectId() {
+        return subjectId;
+    }
+    public String getTestName() {
+        return testName;
+    }
+
     public String getTestDate() {
         return testDate;
     }
-    public String getLecturerId() {
-        return lecturerId;
+    public String getDuration() {
+        return duration;
+    }
+    public int getResultInPercent() {
+        return resultInPercent;
     }
 
-    public String getTestInfo() {
-        return testInfo;
-    }
 
     // Builder Class
     public static class Builder {
         private String testId;
+        private String subjectId;
+        private String testName;
         private String testDate;
-        private String lecturerId;
-        private String testInfo;
+        private String duration;
+        private int resultInPercent;
         private int id;
 
         public Builder setTestId(String testId) {
@@ -59,39 +78,52 @@ public class Test
             return this;
         }
 
+        public Builder setSubjectId(String subjectId) {
+            this.subjectId = subjectId;
+            return this;
+        }
+
+        public Builder setTestName(String testName) {
+            this.testName = testName;
+            return this;
+        }
+        public Builder setResultInPercent(int resultInPercent) {
+            this.resultInPercent= resultInPercent;
+            return this;
+        }
         public Builder setTestDate(String testDate) {
             this.testDate = testDate;
             return this;
         }
 
-        public Builder setLecturerId(String lecturerId) {
-            this.lecturerId = lecturerId;
+        public Builder setDuration(String duration) {
+            this.duration = duration;
             return this;
         }
 
-        public Builder setTestInfo(String testInfo) {
-            this.testInfo = testInfo;
-            return this;
-        }
-
-        public Test build() {
-            return new Test(this);
-
-        }
-
-        public Test.Builder copy(Test test) {
-            this.testId = test.testId;
-            this.testDate = test.testDate;
-            this.lecturerId = test.lecturerId;
-            this.testInfo = test.testInfo;
 
 
-            return this;
-        }
+            public Test build ()
+        {
+                return new Test(this);
 
-        public Test.Builder id(int id) {
-            this.id = id;
-            return this;
+            }
+
+            public Test.Builder copy (Test test){
+                this.testId = test.testId;
+                this.subjectId = test.subjectId;
+                this.testName = test.testName;
+                this.testDate = test.testDate;
+                this.duration = test.duration;
+                this.resultInPercent = test.resultInPercent;
+
+
+                return this;
+            }
+
+            public Test.Builder id ( int id){
+                this.id = id;
+                return this;
+            }
         }
     }
-}

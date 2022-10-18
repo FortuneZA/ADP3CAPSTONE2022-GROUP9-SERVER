@@ -9,15 +9,17 @@ Date : 23 March 2022
 public class TestFactory
 {
 
-    public static Test createTest(String lecturerId, String testDate, String testInfo){
+    public static Test createTest( String subjectId,String testName,String testDate,String duration,int resultInPercent){
 
         String testId = GenericHelper.generateID();
 
         Test test = new Test.Builder()
                 .setTestId(testId)
+                .setSubjectId(subjectId)
+                .setTestName(testName)
                 .setTestDate(testDate)
-                .setLecturerId(lecturerId)
-                .setTestInfo(testInfo)
+                .setDuration(duration)
+                .setResultInPercent(resultInPercent)
                 .build();
 
         return test;

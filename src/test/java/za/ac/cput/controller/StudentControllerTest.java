@@ -15,18 +15,12 @@ import org.springframework.http.*;
 import za.ac.cput.entity.Student;
 import za.ac.cput.factory.StudentFactory;
 import static org.junit.jupiter.api.Assertions.*;
-/*
- * CourseControllerTest.java
- * Test for the Course controller
- * Author: Mathew Fortuin (219069514)
- * Date: 5 October 2022
- */
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
     @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class StudentControllerTest {
 
-    private static Student student = new StudentFactory().createStudent("John","Doe","johndoe@cput.ac.za" ,"ICT01");
+    private static Student student = new StudentFactory().createStudent("Melissa","Yezmin","Willimas","mellisa@cput.ac.za","APDEV261");
     private Student testStudent;
 
     @Autowired
@@ -66,7 +60,7 @@ class StudentControllerTest {
 
         String url = BASE_URL + "/update/";
         System.out.println("URL: " + url);
-        Student updateStudent = new Student.Builder().copy(student).setStudentId("ARCH01").setFirstName("Lindiwe").setLastName("Mhlongo").setStudentEmail("lindiwe@mycput.ac.za").build();
+        Student updateStudent = new Student.Builder().copy(student).setStudentId("21718596").setFirstName("Lindiwe").setMiddleName("chris").setLastName("Mhlongo").setStudentEmail("lindiwe@mycput.ac.za").setCourseID("741TY").build();
         ResponseEntity<Student> postResponse = restTemplate.postForEntity(url,updateStudent,Student.class);
 
         assertNotNull(postResponse.getBody());
