@@ -4,9 +4,18 @@ Entity for Test
 Author: Themba Kanyile 217238173
 Date : 23 March 2022
  */
+
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Lecturer")
 public class Test
 
 {
+     @Id
     private String testId;
     private String testDate;
     private String lecturerId;
@@ -18,6 +27,10 @@ public class Test
         this.testDate = builder.testDate;
         this.lecturerId = builder.lecturerId;
         this.testInfo = builder.testInfo;
+
+    }
+    
+    protected Test() {
 
     }
 
