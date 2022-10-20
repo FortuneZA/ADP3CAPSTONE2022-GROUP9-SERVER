@@ -10,46 +10,55 @@ package za.ac.cput.controller.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.entity.Subject;
-import za.ac.cput.service.impl.SubjectService;
+import za.ac.cput.repository.impl.ISubjectRepository;
 
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @RequestMapping("/subject")
 public class SubjectController {
 
     @Autowired
-    private SubjectService subjectService;
+    private ISubjectRepository subjectRepository;
 
     //Create subject
-    @RequestMapping(value ="/create",method = RequestMethod.POST)
+    @PostMapping(value ="/create")
     public Subject create(@RequestBody Subject subject)
     {
-        return subjectService.create(subject);
+        return subjectRepository.save(subject);
     }
 
     //Read subject
-    @GetMapping("/read/{id}")
-    public Subject read(@PathVariable String id)
-    {
-        return subjectService.read(id);
-    }
+    @GetMapping("/read")
+    List<Subject> getSubjects(){return subjectRepository.findAll();}
 
     //Update subject
-    @PostMapping("/update")
-    public Subject update(@RequestBody Subject subject)
+    @PutMapping("/update/{subjectID}")
+    Subject updateSubject(@RequestBody Subject newSubject,@PathVariable String subjectID)
     {
-        return subjectService.update(subject);
-    }
+        return subjectRepository.findById(subjectID)
+                .map(subject -> {
+                    subject.setSubjectID(newSubject.getSubjectID());
+                    subject.setSubjectName((newSubject.getSubjectName()));
+                    subject.setSubjectCredit((newSubject.getSubjectCredit()));
+                    subject.setLecturerID(newSubject.getLecturerID());
 
+                    return subjectRepository.save(subject);
+                }).orElseThrow(()->new RuntimeException());
+    }
     //Delete subject
-    @DeleteMapping("/delete/{id}")
-    public Boolean delete(@PathVariable String id)
+    @DeleteMapping("/delete/{subjectID}")
+    String deleteSubject(@PathVariable String subjectID)
     {
-        return subjectService.delete(id);
+        if(!subjectRepository.existsById(subjectID))
+        {
+            throw new IllegalArgumentException("Subject not found.");
+        }
+        subjectRepository.deleteById(subjectID);
+        return "Subject with id: "+subjectID+"has been deleted successfully.";
     }
 
     //getAll
-    public Set<Subject> getAll() {return subjectService.getAll();}
+    //public Set<Subject> getAll() {return subjectService.getAll();}
 }
 

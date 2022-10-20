@@ -15,6 +15,7 @@ public class Course {
 
 
     @Id
+
     private String courseId;
     private  String courseName;
     private String courseDescription;
@@ -59,6 +60,28 @@ public class Course {
 
     public String getDepartmentId() {
         return departmentId;
+    }
+
+    //Setters
+
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public void setCourseDescription(String courseDescription) {
+        this.courseDescription = courseDescription;
+    }
+
+    public void setSubjectList(List<String> subjectList) {
+        this.subjectList = subjectList;
+    }
+
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId;
     }
 
     //Builder Class

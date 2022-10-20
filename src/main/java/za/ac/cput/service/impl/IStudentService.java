@@ -1,5 +1,5 @@
 package za.ac.cput.service.impl;
-
+import za.ac.cput.service.IService;
 import za.ac.cput.entity.Student;
 
 import java.util.Set;
@@ -9,14 +9,7 @@ import java.util.Set;
  *Date: 13 October 2022
  */
 
-public interface IStudentService {
-    Student create(Student student);
-
-    Object read(String studentId);
-
-    Student update(Student student);
-
-    boolean delete(String id);
-
+public interface IStudentService extends IService<Student,String>{
+  
     Set<Object> getAll();
 }
