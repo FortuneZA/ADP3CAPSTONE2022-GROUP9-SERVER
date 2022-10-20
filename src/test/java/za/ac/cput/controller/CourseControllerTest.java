@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
     @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CourseControllerTest {
 
-    private static Course course = new CourseFactory().createCourse("APPDEV01","ICT APPLICATION DEVELOPMENT","Fundamentals of Software Development","ICT01");
+    private static Course course = new CourseFactory().createCourse("APPDEV01","ICT APPLICATION DEVELOPMENT","Fundamentals of Software Development");
     private Course testCourse;
 
     @Autowired
@@ -41,7 +41,7 @@ class CourseControllerTest {
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         assertEquals(postResponse.getStatusCode(), HttpStatus.OK);
-        assertEquals(course.getCourseId(),postResponse.getBody().getCourseId());
+        assertEquals(course.getCourseName(),postResponse.getBody().getCourseName());
         testCourse = postResponse.getBody();
         System.out.println("Course created: "+testCourse.toString());
     }
@@ -64,7 +64,7 @@ class CourseControllerTest {
 
         String url = BASE_URL + "/update/";
         System.out.println("URL: " + url);
-        Course updateCourse = new Course.Builder().copy(course).setCourseId("ARCH01").setCourseName("Architecture Development").setCourseDescription("Fundamentals of architecture studies").setDepartmentId("SJC2").build();
+        Course updateCourse = new Course.Builder().copy(course).setCourseName("Architecture Development").setCourseDescription("Fundamentals of architecture studies").setDepartmentId("SJC2").build();
         ResponseEntity<Course> postResponse = restTemplate.postForEntity(url,updateCourse,Course.class);
 
         assertNotNull(postResponse.getBody());

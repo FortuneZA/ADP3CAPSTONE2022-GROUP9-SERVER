@@ -12,7 +12,7 @@ Author: Mathew Fortuin (219069514)
 Date: 21/8/2022
  */
 @Repository
-public interface ICourseRepository extends JpaRepository<Course,String> {
+public interface ICourseRepository extends JpaRepository<Course,Long> {
 
 
 }

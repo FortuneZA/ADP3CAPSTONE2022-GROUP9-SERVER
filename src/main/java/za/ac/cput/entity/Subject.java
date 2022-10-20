@@ -13,8 +13,8 @@ public class Subject {
 
 
     @Id
-
-    private String subjectID;
+    @GeneratedValue
+    private Long subjectID;
     private String subjectName;
     private Integer subjectCredit;
     private String lecturerID;
@@ -37,7 +37,7 @@ public class Subject {
     //Getters
 
 
-    public String getSubjectID() {
+    public Long getSubjectID() {
         return subjectID;
     }
 
@@ -56,7 +56,7 @@ public class Subject {
 
     //Setters
 
-    public void setSubjectID(String subjectID) {
+    public void setSubjectID(Long subjectID) {
         this.subjectID = subjectID;
     }
 
@@ -76,7 +76,7 @@ public class Subject {
     //Builder Class
 
     public static class Builder {
-        private String subjectID;
+        private Long subjectID;
         private String subjectName;
         private Integer subjectCredit;
         private String lecturerID;
@@ -93,7 +93,7 @@ public class Subject {
             return this;
         }
 
-        public Builder setSubjectID(String subjectID) {
+        public Builder setSubjectID(Long subjectID) {
             this.subjectID = subjectID;
             return this;
         }

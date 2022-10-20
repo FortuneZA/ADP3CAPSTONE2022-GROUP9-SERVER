@@ -11,11 +11,10 @@ import za.ac.cput.entity.Subject;
 
 public class SubjectFactory {
 
-    public static Subject createSubject(String subjectID, String subjectName,Integer subjectCredit, String lecturerID)
+    public static Subject createSubject( String subjectName,Integer subjectCredit, String lecturerID)
     {
 
-        if(!StringUtils.hasLength(subjectID))
-            throw new IllegalArgumentException("Subject ID was not provided");
+
         if(!StringUtils.hasLength(subjectName))
             throw new IllegalArgumentException("Subject Name was not provided");
         if(subjectCredit.equals(null))
@@ -27,7 +26,7 @@ public class SubjectFactory {
 
 
        return new Subject.Builder()
-               .setSubjectID("IMN32")
+
                .setSubjectName("Information Management")
                .setSubjectCredit(36)
                .setLecturerID("FA12")

@@ -36,11 +36,10 @@ public class CourseController {
 
     //Update course
     @PutMapping("/update/{id}")
-    Course updateCourse(@RequestBody Course newCourse,@PathVariable String id)
+    Course updateCourse(@RequestBody Course newCourse,@PathVariable Long id)
     {
         return courseRepository.findById(id)
                 .map(course -> {
-                    course.setCourseId(newCourse.getCourseId());
                     course.setCourseName((newCourse.getCourseName()));
                     course.setCourseDescription((newCourse.getCourseDescription()));
                     course.setDepartmentId(newCourse.getDepartmentId());
@@ -50,14 +49,14 @@ public class CourseController {
     }
     //Delete course
     @DeleteMapping("/delete/{id}")
-   String deleteCourse(@PathVariable String id)
+   String deleteCourse(@PathVariable Long id)
     {
         if(!courseRepository.existsById(id))
     {
         throw new IllegalArgumentException("Course not found.");
     }
         courseRepository.deleteById(id);
-        return "Course with id: "+id+"has been deleted successfully.";
+        return "Course with id:  "  +id+  "  has been deleted successfully.";
     }
 
     //getAll

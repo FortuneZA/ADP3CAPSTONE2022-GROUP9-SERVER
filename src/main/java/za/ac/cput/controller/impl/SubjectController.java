@@ -34,11 +34,11 @@ public class SubjectController {
 
     //Update subject
     @PutMapping("/update/{subjectID}")
-    Subject updateSubject(@RequestBody Subject newSubject,@PathVariable String subjectID)
+    Subject updateSubject(@RequestBody Subject newSubject,@PathVariable Long subjectID)
     {
         return subjectRepository.findById(subjectID)
                 .map(subject -> {
-                    subject.setSubjectID(newSubject.getSubjectID());
+
                     subject.setSubjectName((newSubject.getSubjectName()));
                     subject.setSubjectCredit((newSubject.getSubjectCredit()));
                     subject.setLecturerID(newSubject.getLecturerID());
@@ -48,14 +48,14 @@ public class SubjectController {
     }
     //Delete subject
     @DeleteMapping("/delete/{subjectID}")
-    String deleteSubject(@PathVariable String subjectID)
+    String deleteSubject(@PathVariable Long subjectID)
     {
         if(!subjectRepository.existsById(subjectID))
         {
             throw new IllegalArgumentException("Subject not found.");
         }
         subjectRepository.deleteById(subjectID);
-        return "Subject with id: "+subjectID+"has been deleted successfully.";
+        return "Subject with id:  "+subjectID+"  has been deleted successfully.";
     }
 
     //getAll

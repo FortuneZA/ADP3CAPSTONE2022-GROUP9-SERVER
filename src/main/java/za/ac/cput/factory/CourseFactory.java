@@ -14,12 +14,11 @@ import java.util.LinkedList;
 
 public class CourseFactory
 {
-    public static Course createCourse(String courseId,String courseName,String courseDescription,String departmentId)
+    public static Course createCourse(String courseName,String courseDescription,String departmentId)
     {
 
 
-         if(!StringUtils.hasLength(courseId))
-             throw new IllegalArgumentException("course ID was not provided.");
+
          if(!StringUtils.hasLength(courseName))
              throw new IllegalArgumentException("course name was not provided.");
          if(!StringUtils.hasLength(courseDescription))
@@ -29,9 +28,9 @@ public class CourseFactory
 
 
         return new Course.Builder()
-                .setCourseId("ICT:800")
+
                 .setCourseName("ICT:Applications Development")
-                .setCourseDescription("Programming foundations and business practices regarding software development.")
+                .setCourseDescription("Information and communication systems")
                 .setDepartmentId("ITS03")
                 .setSubjectList(new LinkedList())
                 .build();
