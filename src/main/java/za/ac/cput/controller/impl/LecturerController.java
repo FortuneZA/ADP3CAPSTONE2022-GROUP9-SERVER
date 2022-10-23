@@ -1,5 +1,11 @@
 package za.ac.cput.controller.impl;
 
+/*
+Name: Cameron Henry Noemdo
+Student number: 219115443
+File: LecturerController.java
+ */
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.entity.Lecturer;
