@@ -46,5 +46,6 @@ public class CourseController {
    public boolean delete(@PathVariable Integer id){return courseService.delete(id);}
 
     //getAll
+    @GetMapping("/getAll")
     public Set<Course> getAll() {return courseService.getAll();}
 }
