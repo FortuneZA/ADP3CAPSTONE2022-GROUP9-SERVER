@@ -27,7 +27,7 @@ public class LecturerService implements ILecturerService {
 
     @Override
     public Lecturer read(String lecturerId) {
-        return this.lecturerRepository.findById(lecturerId).orElse(null);
+        return this.lecturerRepository.findById(lecturerId).orElseGet(null);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class LecturerService implements ILecturerService {
     public boolean delete(String lecturerId) {
         this.lecturerRepository.deleteById(lecturerId);
         if(this.lecturerRepository.existsById(lecturerId)) {
-            return false;
+            throw new IllegalArgumentException("Lecturer not found.");
         }
         else {
             return true;
