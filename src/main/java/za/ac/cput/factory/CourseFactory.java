@@ -9,6 +9,7 @@ package za.ac.cput.factory;
 
 import org.springframework.util.StringUtils;
 import za.ac.cput.entity.Course;
+import za.ac.cput.util.GenericHelper;
 
 import java.util.LinkedList;
 
