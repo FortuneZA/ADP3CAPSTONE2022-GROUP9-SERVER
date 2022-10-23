@@ -7,6 +7,8 @@ Date: 29 March 2022
 */
 
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -16,13 +18,13 @@ import javax.persistence.Table;
 public class Lecturer {
     @Id
     private String lecturerId;
-    private String firstName;
+    @NotNull private String firstName;
 
-    private String middleName;
-    private String lastName;
-    private String lecturerEmail;
+    private String middleName="";
+    @NotNull private String lastName;
+    @NotNull private String lecturerEmail;
 
-    private String departmentId;
+    @NotNull private String departmentId;
 
     private Lecturer(Builder builder) {
         this.lecturerId = builder.lecturerId;

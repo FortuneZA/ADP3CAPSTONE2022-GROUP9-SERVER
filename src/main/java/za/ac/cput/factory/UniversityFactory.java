@@ -15,9 +15,9 @@ public class UniversityFactory {
     {
         String universityId=GenericHelper.generateID();
 
-        if(!StringUtils.hasLength(universityName))
+        if(!StringUtils.hasLength(universityName)||universityName.equals(""))
             throw new IllegalArgumentException("University name is not present");
-        if(!StringUtils.hasLength(email))
+        if(!StringUtils.hasLength(email)||email.equals(""))
             throw new IllegalArgumentException("Email is not present");
         GenericHelper.emailValidation(email);
 //        if(facultyList.isEmpty())

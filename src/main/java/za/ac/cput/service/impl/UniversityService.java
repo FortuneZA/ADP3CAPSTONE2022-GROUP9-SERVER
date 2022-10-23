@@ -26,8 +26,8 @@ public class UniversityService implements IUniversityService {
     }
 
     @Override
-    public University read(String universityName) {
-        return this.universityRepository.findById(universityName).orElse(null);
+    public University read(String universityId) {
+        return this.universityRepository.findById(universityId).orElseGet(null);
     }
 
     @Override
@@ -38,10 +38,10 @@ public class UniversityService implements IUniversityService {
     }
 
     @Override
-    public boolean delete(String universityName) {
-        this.universityRepository.deleteById(universityName);
-        if(this.universityRepository.existsById(universityName)) {
-            return false;
+    public boolean delete(String universityId) {
+        this.universityRepository.deleteById(universityId);
+        if(this.universityRepository.existsById(universityId)) {
+            throw new IllegalArgumentException("University not found.");
         }
         else {
             return true;
