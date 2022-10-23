@@ -32,7 +32,7 @@ public class CourseController {
 
     //Read course
     @GetMapping("/read/{id}")
-    public Course read(@PathVariable int id){return courseService.read(id);}
+    public Course read(@PathVariable Integer id){return courseService.read(id);}
 
     //Update course
     @PostMapping("/update")
@@ -43,7 +43,7 @@ public class CourseController {
 
     //Delete course
     @DeleteMapping("/delete/{id}")
-   public boolean delete(@PathVariable int id){return courseService.delete(id);}
+   public boolean delete(@PathVariable Integer id){return courseService.delete(id);}
 
     //getAll
     public Set<Course> getAll() {return courseService.getAll();}
