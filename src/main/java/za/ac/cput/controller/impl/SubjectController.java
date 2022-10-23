@@ -10,55 +10,43 @@ package za.ac.cput.controller.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.entity.Subject;
+import za.ac.cput.entity.Subject;
 import za.ac.cput.repository.impl.ISubjectRepository;
+import za.ac.cput.service.impl.SubjectService;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/subject")
 public class SubjectController {
 
     @Autowired
-    private ISubjectRepository subjectRepository;
+    private SubjectService subjectService;
 
     //Create subject
     @PostMapping(value ="/create")
     public Subject create(@RequestBody Subject subject)
     {
-        return subjectRepository.save(subject);
+        return subjectService.create(subject);
     }
 
     //Read subject
-    @GetMapping("/read")
-    List<Subject> getSubjects(){return subjectRepository.findAll();}
+    @GetMapping("/read/{id}")
+    public Subject read(@PathVariable int id){return subjectService.read(id);}
 
     //Update subject
-    @PutMapping("/update/{subjectID}")
-    Subject updateSubject(@RequestBody Subject newSubject,@PathVariable Long subjectID)
-    {
-        return subjectRepository.findById(subjectID)
-                .map(subject -> {
+    @PostMapping("/update")
+    public Subject update(@RequestBody Subject subject){
 
-                    subject.setSubjectName((newSubject.getSubjectName()));
-                    subject.setSubjectCredit((newSubject.getSubjectCredit()));
-                    subject.setLecturerID(newSubject.getLecturerID());
-
-                    return subjectRepository.save(subject);
-                }).orElseThrow(()->new RuntimeException());
+        return subjectService.update(subject);
     }
+
     //Delete subject
-    @DeleteMapping("/delete/{subjectID}")
-    String deleteSubject(@PathVariable Long subjectID)
-    {
-        if(!subjectRepository.existsById(subjectID))
-        {
-            throw new IllegalArgumentException("Subject not found.");
-        }
-        subjectRepository.deleteById(subjectID);
-        return "Subject with id:  "+subjectID+"  has been deleted successfully.";
-    }
+    @DeleteMapping("/delete/{id}")
+    public boolean delete(@PathVariable int id){return subjectService.delete(id);}
 
     //getAll
-    //public Set<Subject> getAll() {return subjectService.getAll();}
+    public Set<Subject> getAll() {return subjectService.getAll();}
 }
 

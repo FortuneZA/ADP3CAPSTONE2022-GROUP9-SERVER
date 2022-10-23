@@ -10,7 +10,7 @@ Interface for CourseService class
 Author: Mathew Fortuin
 Date: 21/8/2022
  */
-public interface ICourseService extends IService<Course,Long> {
+public interface ICourseService extends IService<Course,Integer> {
 
     Set<Course> getAll();
 }

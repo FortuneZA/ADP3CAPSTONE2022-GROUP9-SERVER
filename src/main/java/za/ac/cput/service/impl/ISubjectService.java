@@ -10,7 +10,7 @@ Interface for Subject Service class
 Author: Mathew Fortuin (219069514)
 Date: 21/8/2022
  */
-public interface ISubjectService extends IService <Subject,Long> {
+public interface ISubjectService extends IService <Subject,Integer> {
 
     Set<Subject> getAll();
 }

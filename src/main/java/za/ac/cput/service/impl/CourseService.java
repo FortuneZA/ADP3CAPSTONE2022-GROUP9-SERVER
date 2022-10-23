@@ -36,7 +36,7 @@ public class CourseService implements ICourseService {
     public Course create(Course course){return this.courseRepository.save(course);}
 
     @Override
-    public Course read(Long courseId){return this.courseRepository.findById(courseId).orElseGet(null);}
+    public Course read(Integer courseId){return this.courseRepository.findById(courseId).orElseGet(null);}
 
     @Override
     public Course update(Course course)
@@ -50,7 +50,7 @@ public class CourseService implements ICourseService {
     }
 
     @Override
-    public boolean delete(Long id)
+    public boolean delete(Integer id)
     {
         this.courseRepository.deleteById(id);
 

@@ -21,44 +21,30 @@ import java.util.Set;
 public class CourseController {
 
     @Autowired
-    private ICourseRepository courseRepository;
+    private CourseService courseService;
 
     //Create course
     @PostMapping(value ="/create")
     public Course create(@RequestBody Course course)
     {
-        return courseRepository.save(course);
+        return courseService.create(course);
     }
 
     //Read course
-    @GetMapping("/read")
-    List<Course> getCourses(){return courseRepository.findAll();}
+    @GetMapping("/read/{id}")
+    public Course read(@PathVariable int id){return courseService.read(id);}
 
     //Update course
-    @PutMapping("/update/{id}")
-    Course updateCourse(@RequestBody Course newCourse,@PathVariable Long id)
-    {
-        return courseRepository.findById(id)
-                .map(course -> {
-                    course.setCourseName((newCourse.getCourseName()));
-                    course.setCourseDescription((newCourse.getCourseDescription()));
-                    course.setDepartmentId(newCourse.getDepartmentId());
+    @PostMapping("/update")
+   public Course update(@RequestBody Course course){
 
-                    return courseRepository.save(course);
-                }).orElseThrow(()->new RuntimeException());
+        return courseService.update(course);
     }
+
     //Delete course
     @DeleteMapping("/delete/{id}")
-   String deleteCourse(@PathVariable Long id)
-    {
-        if(!courseRepository.existsById(id))
-    {
-        throw new IllegalArgumentException("Course not found.");
-    }
-        courseRepository.deleteById(id);
-        return "Course with id:  "  +id+  "  has been deleted successfully.";
-    }
+   public boolean delete(@PathVariable int id){return courseService.delete(id);}
 
     //getAll
-  //  public Set<Course> getAll() {return courseService.getAll();}
+    public Set<Course> getAll() {return courseService.getAll();}
 }

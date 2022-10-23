@@ -36,7 +36,7 @@ public static SubjectService getService() {
     public Subject create(Subject subject){return this.subjectRepository.save(subject);}
 
     @Override
-    public Subject read(Long subjectId){return this.subjectRepository.findById(subjectId).orElseGet(null);}
+    public Subject read(Integer subjectId){return this.subjectRepository.findById(subjectId).orElseGet(null);}
 
     @Override
     public Subject update(Subject subject)
@@ -50,7 +50,7 @@ public static SubjectService getService() {
     }
 
     @Override
-    public boolean delete(Long id){
+    public boolean delete(Integer id){
         this.subjectRepository.deleteById(id);
         if(this.subjectRepository.existsById(id)) return false;
         else return true;
