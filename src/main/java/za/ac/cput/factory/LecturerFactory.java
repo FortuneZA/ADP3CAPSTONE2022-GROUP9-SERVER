@@ -15,14 +15,14 @@ public class LecturerFactory {
     {
         String lecturerID = GenericHelper.generateID();
 
-        if(!StringUtils.hasLength(firstName))
+        if(!StringUtils.hasLength(firstName)||firstName.equals(""))
             throw new IllegalArgumentException("First name is not present");
-        if(!StringUtils.hasLength(lastName))
+        if(!StringUtils.hasLength(lastName)||lastName.equals(""))
             throw new IllegalArgumentException("Last name is not present");
-        if(!StringUtils.hasLength(lecturerEmail))
+        if(!StringUtils.hasLength(lecturerEmail)||lecturerEmail.equals(""))
             throw new IllegalArgumentException("Email is not present");
         GenericHelper.emailValidation(lecturerEmail);
-        if(!StringUtils.hasLength(departmentId))
+        if(!StringUtils.hasLength(departmentId)||departmentId.equals(""))
             throw new IllegalArgumentException("Department ID is not present");
         return new Lecturer.Builder()
                 .setLecturerId(lecturerID)
