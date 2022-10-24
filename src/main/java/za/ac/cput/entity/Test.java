@@ -1,19 +1,27 @@
 package za.ac.cput.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.*;
 
 /*
 Entity for Test
 Author: Themba Kanyile 217238173
 Date : 23 March 2022
  */
+
+
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+
 @Entity
 @Table(name="test")
 public class TestModel
 
 {
     @Id
+
     private String testId;
 
     private String subjectId;
@@ -35,6 +43,10 @@ public class TestModel
         this.testDate = builder.testDate;
         this.duration = builder.duration;
         this.resultInPercent = builder.resultInPercent;
+
+    }
+    
+    protected Test() {
 
     }
 
@@ -139,3 +151,4 @@ public class TestModel
             }
         }
     }
+
