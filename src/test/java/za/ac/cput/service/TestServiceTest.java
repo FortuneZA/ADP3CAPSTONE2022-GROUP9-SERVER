@@ -4,64 +4,79 @@ package za.ac.cput.service;
  *StudentNumber:217238173
  *Date: 13 October 2022
  */
-/*
+
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-//import za.ac.cput.entity.Test;
-import za.ac.cput.factory.TestFactory;
-import za.ac.cput.service.impl.TestService;
+import za.ac.cput.entity.TestModel;
+import za.ac.cput.factory.TestModelFactory;
+import za.ac.cput.service.impl.TestModelService;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)
 
-public class TestServiceTest {
+public class TestModelServiceTest {
 
-    private static TestService testService = TestService.getService();
-    private static Test createdTest = (Test) TestFactory.createTest("RB115","1 November 2022","ADT262S");
 
-    @Test
-    void a_create(){
+    private final TestModel test = TestModelFactory.createTest("QWE782", "INM-Sick-Test", "2 November 2022", "4 Hours", 30);
+    private TestModel testModelCreated;
 
-        Test create = testService.create(createdTest);
-        assertEquals(create.getTestId(),createdTest.getTestId());
-        System.out.println("ID#1: "+create.getTestId()+"\nID#2"+createdTest.getTestId()+"\n");
+    @Autowired
+    private TestModelService testModelService;
 
+    void createTest(TestModel testModel) {
+        testModelCreated = testModelService.create(testModel);
     }
 
     @Test
-    void b_read(){
-        Test read = TestService.read(createdTest.getStudentId());
-        assertNotNull(read);
-        System.out.println("Reading TestID: "+read+"\n");
-
+    void d_getAll() {
+        Set<TestModel> testModelSet = testModelService.getAll();
+        System.out.println(testModelSet);
     }
 
     @Test
-    void c_update(){
-
-        Test updated = new Test.Builder().copy(createdTest).setLectureID("NK458").build();
-        assertNotNull(testService.update(updated));
-
-        System.out.println("Current course ID: "+updated.getTestId()+"\nOld course ID: "+createdTest.getLectureId());
-
+    void a_create() {
+        new TestModel(test);
+        assertEquals("QWE782",testModelCreated.getSubjectId());
+        System.out.println("Created: " + testModelCreated);
     }
 
     @Test
-    void d_delete(){
-        boolean deleted = testService.delete(createdTest.getTestId());
-        assertTrue(deleted);
-        System.out.println("Deleted: "+deleted);
-        e_getAll();
+    void b_read() {
+        createTest(test);
+        TestModel testModelRead= testModelService.read(testModelCreated.getTestId());
+        System.out.println("Read: " + testModelRead);
     }
 
     @Test
-    void e_getAll() {
-
-        System.out.println(testService.getAll()+"\n");
+    void c_update() {
+        createTest(test);
+        TestModel testUpdate = new TestModel
+                .Builder()
+                .copy(test)
+                .setTestId("HuaMui")
+                .setSubjectId("MUD785")
+                .setTestName("Multimedia Practical Test")
+                .setTestDate("30 October 2022")
+                .setDuration("1 Hour")
+                .setResultInPercent(50)
+                .build();
+        testModelService.update(testUpdate);
+        System.out.println("Updated: " + testUpdate);
     }
-*/
 
+    @Test
+    void e_delete() {
+        createTest(test);
+        boolean delete = testModelService.delete(test.getTestId());
+        assertTrue(delete);
+    }
+
+}
