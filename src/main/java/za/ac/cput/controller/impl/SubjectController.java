@@ -47,6 +47,7 @@ public class SubjectController {
     public boolean delete(@PathVariable int id){return subjectService.delete(id);}
 
     //getAll
+    @GetMapping("/getAll")
     public Set<Subject> getAll() {return subjectService.getAll();}
 }
 
