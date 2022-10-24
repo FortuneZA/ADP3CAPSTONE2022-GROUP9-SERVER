@@ -22,7 +22,7 @@ public class SystemAdminController {
     return systemAdminService.create(newSystemAdmin);
     }
 
-    @GetMapping("/read/{id}")
+    @GetMapping("/read/{systemAdmin}")
     public SystemAdmin read(@PathVariable String id){
         return systemAdminService.read(id);
     }

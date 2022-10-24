@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class SubjectFactoryTest {
 
 
-    private final  Subject subject = SubjectFactory.createSubject("INM351","Information Management",36,"AF10");
-    private final  Subject subject2 = SubjectFactory.createSubject("ITS201","Information Systems",36,"WR10");
+    private final  Subject subject = SubjectFactory.createSubject("Information Management",36,"AF10");
+    private final  Subject subject2 = SubjectFactory.createSubject("Information Systems",36,"WR10");
 
     private Subject subject3 = subject2;
 
@@ -21,7 +21,8 @@ public class SubjectFactoryTest {
     {
         assertAll(
                 ()->assertNotNull(subject),
-                ()->assertEquals("IMN32",subject.getSubjectID())
+                ()->assertEquals("FA12",subject.getLecturerID())
+
         );
     }
 
@@ -51,7 +52,7 @@ public class SubjectFactoryTest {
     @Test
     public void TestNull()
     {
-        Subject subject2 = SubjectFactory.createSubject("IMN32","Information Management",36,"AF10");
+        Subject subject2 = SubjectFactory.createSubject("Information Management",36,"AF10");
         assertNotEquals(subject2,null);
     }
 

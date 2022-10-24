@@ -10,8 +10,11 @@ package za.ac.cput.controller.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.entity.Subject;
+import za.ac.cput.entity.Subject;
+import za.ac.cput.repository.impl.ISubjectRepository;
 import za.ac.cput.service.impl.SubjectService;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -22,7 +25,7 @@ public class SubjectController {
     private SubjectService subjectService;
 
     //Create subject
-    @RequestMapping(value ="/create",method = RequestMethod.POST)
+    @PostMapping(value ="/create")
     public Subject create(@RequestBody Subject subject)
     {
         return subjectService.create(subject);
@@ -30,24 +33,18 @@ public class SubjectController {
 
     //Read subject
     @GetMapping("/read/{id}")
-    public Subject read(@PathVariable String id)
-    {
-        return subjectService.read(id);
-    }
+    public Subject read(@PathVariable int id){return subjectService.read(id);}
 
     //Update subject
     @PostMapping("/update")
-    public Subject update(@RequestBody Subject subject)
-    {
+    public Subject update(@RequestBody Subject subject){
+
         return subjectService.update(subject);
     }
 
     //Delete subject
     @DeleteMapping("/delete/{id}")
-    public Boolean delete(@PathVariable String id)
-    {
-        return subjectService.delete(id);
-    }
+    public boolean delete(@PathVariable int id){return subjectService.delete(id);}
 
     //getAll
     public Set<Subject> getAll() {return subjectService.getAll();}

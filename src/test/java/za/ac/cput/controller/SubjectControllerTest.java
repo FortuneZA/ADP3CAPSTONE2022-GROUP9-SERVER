@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class SubjectControllerTest {
 
-    private static Subject subject = new SubjectFactory().createSubject("ITS","INFORMATION SYSTEMS",36,"WR12");
+    private static Subject subject = new SubjectFactory().createSubject("ITS",36,"kb35");
     private Subject testSubject;
 
     @Autowired
@@ -41,7 +41,7 @@ class SubjectControllerTest {
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());
         assertEquals(postResponse.getStatusCode(), HttpStatus.OK);
-        assertEquals(subject.getSubjectID(),postResponse.getBody().getSubjectID());
+        assertEquals(subject.getSubjectName(),postResponse.getBody().getSubjectName());
         testSubject = postResponse.getBody();
         System.out.println("Subject created: "+testSubject.toString());
     }
@@ -64,7 +64,7 @@ class SubjectControllerTest {
 
         String url = BASE_URL + "/update/";
         System.out.println("URL: " + url);
-        Subject updateSubject = new Subject.Builder().copy(subject).setSubjectID("ITS01").setSubjectName("INFORMATION SYSTEMS").setSubjectCredit(36).setLecturerID("WR21").build();
+        Subject updateSubject = new Subject.Builder().copy(subject).setSubjectName("INFORMATION SYSTEMS").setSubjectCredit(36).setLecturerID("WR21").build();
         ResponseEntity<Subject> postResponse = restTemplate.postForEntity(url,updateSubject,Subject.class);
 
         assertNotNull(postResponse.getBody());

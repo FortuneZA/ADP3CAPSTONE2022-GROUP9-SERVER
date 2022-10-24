@@ -1,23 +1,25 @@
 package za.ac.cput.factory;
-import za.ac.cput.entity.Test;
+import za.ac.cput.entity.TestModel;
 import za.ac.cput.util.GenericHelper;
 /*
 Factory for Test
 Author: Themba Kanyile 217238173
 Date : 23 March 2022
  */
-public class TestFactory
+public class TestModelFactory
 {
 
-    public static Test createTest(String lecturerId, String testDate, String testInfo){
+    public static TestModel createTest( String subjectId,String testName,String testDate,String duration,int resultInPercent){
 
         String testId = GenericHelper.generateID();
 
-        Test test = new Test.Builder()
+        TestModel test = new TestModel.Builder()
                 .setTestId(testId)
+                .setSubjectId(subjectId)
+                .setTestName(testName)
                 .setTestDate(testDate)
-                .setLecturerId(lecturerId)
-                .setTestInfo(testInfo)
+                .setDuration(duration)
+                .setResultInPercent(resultInPercent)
                 .build();
 
         return test;

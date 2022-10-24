@@ -6,6 +6,8 @@ Author: Cameron Henry Noemdo (219115443)
 Date: 29 March 2022
 */
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -15,8 +17,11 @@ import javax.persistence.Table;
 public class University {
     @Id
     private String universityId;
+
+    @NotNull
     private String universityName;
-    private String email;
+
+    @NotNull private String email;
 
     //private List<String> facultyList;
 

@@ -15,7 +15,8 @@ public class Course {
 
 
     @Id
-    private String courseId;
+    @GeneratedValue
+    private int courseId;
     private  String courseName;
     private String courseDescription;
     @ElementCollection
@@ -43,7 +44,7 @@ public class Course {
     //Getters
 
 
-    public String getCourseId() {
+    public int getCourseId() {
         return courseId;
     }
 
@@ -61,10 +62,32 @@ public class Course {
         return departmentId;
     }
 
+    //Setters
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public void setCourseDescription(String courseDescription) {
+        this.courseDescription = courseDescription;
+    }
+
+    public void setSubjectList(List<String> subjectList) {
+        this.subjectList = subjectList;
+    }
+
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId;
+    }
+
     //Builder Class
 
     public static class Builder {
-        private String courseId;
+        private int courseId;
         private String courseName;
         private String courseDescription;
         private List subjectList;
@@ -72,7 +95,7 @@ public class Course {
 
 
 
-        public Builder setCourseId(String courseId) {
+        public Builder setCourseId(int courseId) {
             this.courseId = courseId;
             return this;
         }

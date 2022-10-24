@@ -10,8 +10,10 @@ package za.ac.cput.controller.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.entity.Course;
+import za.ac.cput.repository.impl.ICourseRepository;
 import za.ac.cput.service.impl.CourseService;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -22,7 +24,7 @@ public class CourseController {
     private CourseService courseService;
 
     //Create course
-    @RequestMapping(value ="/create",method = RequestMethod.POST)
+    @PostMapping(value ="/create")
     public Course create(@RequestBody Course course)
     {
         return courseService.create(course);
@@ -30,25 +32,20 @@ public class CourseController {
 
     //Read course
     @GetMapping("/read/{id}")
-    public Course read(@PathVariable String id)
-    {
-        return courseService.read(id);
-    }
+    public Course read(@PathVariable Integer id){return courseService.read(id);}
 
     //Update course
     @PostMapping("/update")
-    public Course update(@RequestBody Course course)
-    {
+   public Course update(@RequestBody Course course){
+
         return courseService.update(course);
     }
 
     //Delete course
     @DeleteMapping("/delete/{id}")
-    public Boolean delete(@PathVariable String id)
-    {
-        return courseService.delete(id);
-    }
+   public boolean delete(@PathVariable Integer id){return courseService.delete(id);}
 
     //getAll
+    @GetMapping("/getAll")
     public Set<Course> getAll() {return courseService.getAll();}
 }

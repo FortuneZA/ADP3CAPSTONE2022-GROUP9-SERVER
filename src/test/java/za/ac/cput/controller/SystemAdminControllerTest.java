@@ -20,7 +20,7 @@ class SystemAdminControllerTest {
 
     private static SystemAdmin systemAdmin =  SystemAdminFactory.createSystemAdmin("Khuzwayo", "khuzwayo@gmail.com");
 
-    private SystemAdmin systemAdminTest;
+
     @Autowired
     private TestRestTemplate restTemplate;
 
@@ -40,40 +40,39 @@ class SystemAdminControllerTest {
         assertEquals(postResponse.getStatusCode(), HttpStatus.OK);
         assertEquals(systemAdmin.getAdminName(),postResponse.getBody().getAdminName());
 
-        systemAdminTest = postResponse.getBody();
-        System.out.println("Saved data:" + systemAdminTest.toString());
+        systemAdmin = postResponse.getBody();
+        System.out.println("Saved data:" + systemAdmin);
 
 }
 
     @Test
     void b_read() {
-
         String url = BASE_URL +"/read/"+ systemAdmin.getAdminEmail();
         System.out.println("URL:" +url);
-        ResponseEntity<SystemAdmin> response = restTemplate.getForEntity(url ,  SystemAdmin.class);
-        assertNotNull(response);
-        assertNotNull(systemAdmin);
-        assertEquals(systemAdmin.getAdminEmail(),response.getBody().getAdminEmail());
-        systemAdminTest = response.getBody();
-        System.out.println("Read: " + systemAdminTest.toString());
+        ResponseEntity<SystemAdmin> response = restTemplate.getForEntity(url,SystemAdmin.class);
+
+        assertNotNull(response.getBody());
+        systemAdmin = response.getBody();
+        System.out.println("Read: " + systemAdmin.toString());
     }
     @Test
     void c_update()
     {
-    SystemAdmin updated = new SystemAdmin.Builder().copy(systemAdmin).setAdminName("Tyler").setAdminEmail("Tyler@gmail.com").build();
+        a_create();
+    SystemAdmin updated = new SystemAdmin.Builder().copy(systemAdmin).setAdminName("Tyler").build();
         String url = BASE_URL + "/update";
         System.out.println("URL: " + url);
-        System.out.println("Post data:" + updated);
-
         ResponseEntity<SystemAdmin> response = restTemplate.postForEntity(url,updated,SystemAdmin.class);
-        assertNotNull(response);
+        systemAdmin=response.getBody();
+
+        assertEquals("Tyler",systemAdmin.getAdminName());
         assertNotNull(systemAdmin);
-        assertNotNull(response.getBody());
+        System.out.println("Updated data:" + systemAdmin);
 
 
 
-        systemAdminTest = response.getBody();
-        System.out.println("update:" + updated);
+
+
 
     }
     @Test

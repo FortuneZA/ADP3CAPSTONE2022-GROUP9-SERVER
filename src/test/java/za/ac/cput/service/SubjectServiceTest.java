@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SubjectServiceTest {
 
     private static SubjectService subjectService = SubjectService.getService();
-    private static Subject createdSubject = SubjectFactory.createSubject("ITS045","Information Systems 4",36,"AW12");
+    private static Subject createdSubject = SubjectFactory.createSubject("ITS045",38,"AW12");
 
     @Test
     void a_create(){

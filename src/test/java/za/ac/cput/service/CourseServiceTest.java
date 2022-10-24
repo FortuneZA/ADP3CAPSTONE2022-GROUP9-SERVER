@@ -20,14 +20,14 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CourseServiceTest {
 
     private static CourseService courseService = CourseService.getService();
-    private static Course createdCourse = CourseFactory.createCourse("ICT:APP20","ICT: Applications Development","Fundamentals of application architecture in the software indsutry","IT02");
+    private static Course createdCourse = new CourseFactory().createCourse("ICT:APP20","ICT: Applications Development","Fundamentals of application architecture in the software indsutry");
 
     @Test
     void a_create(){
 
-        Course create = courseService.create(createdCourse);
-        assertEquals(create.getCourseId(),createdCourse.getCourseId());
-        System.out.println("ID#1: "+create.getCourseId()+"\nID#2"+createdCourse.getCourseId()+"\n");
+        Course createCourse = courseService.create(createdCourse);
+        assertEquals(createCourse.getCourseName(),createdCourse.getCourseName());
+        System.out.println("ID#1: "+createCourse.getCourseId()+"\nID#2"+createdCourse.getCourseId()+"\n");
 
     }
 

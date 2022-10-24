@@ -8,6 +8,7 @@ Date : 23 March 2022
 import static org.junit.jupiter.api.Assertions.*;
 
 
+import com.sun.xml.bind.v2.runtime.unmarshaller.WildcardLoader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -22,8 +23,8 @@ public class StudentFactoryTest
 
     @Test
     public void createStudent() {
-        Student student1 = StudentFactory.createStudent("Anele", "Zondo", "anele@gmail.com", "262S");
-        Student student2 = StudentFactory.createStudent("Will", "Smith", "thembak@gmail.com", "281J");
+        Student student1 = StudentFactory.createStudent("will","saul","smith","will@cput.ac.za","262S");
+        Student student2 = StudentFactory.createStudent("amanda","dudu","khoza","amanda@cput.ac.za","15KP");
 
         System.out.println(student1.toString());
         System.out.println(student2.toString());
@@ -34,8 +35,8 @@ public class StudentFactoryTest
 
     @BeforeEach
     void setUp() {
-        Student student1 = StudentFactory.createStudent("Anele", "Zondo", "anele@gmail.com", "262SS");
-        Student student2 = StudentFactory.createStudent("Themba", "Khanyile", "thembak@gmail.com", "281J");
+        Student student1 = StudentFactory.createStudent("will","saul","smith","will@cput.ac.za","262S");
+        Student student2 = StudentFactory.createStudent("amanda","dudu","khoza","amanda@cput.ac.za","15KP");
     }
 
     @Test
@@ -65,3 +66,4 @@ public class StudentFactoryTest
 
     }
 }
+
