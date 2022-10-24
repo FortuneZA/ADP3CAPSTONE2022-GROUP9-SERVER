@@ -4,63 +4,85 @@ package za.ac.cput.service;
  *StudentNumber:217238173
  *Date: 13 October 2022
  */
+
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.entity.Student;
 import za.ac.cput.factory.StudentFactory;
 import za.ac.cput.service.impl.StudentService;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)
 
 public class StudentServiceTest {
 
-    private static StudentService studentService = StudentService.getService();
-    private static Student createdStudent = StudentFactory.createStudent("John","Doe","smith","johndoe@cput.ac.za","268RS");
 
-    @Test
-    void a_create(){
+    private final Student student = StudentFactory.createStudent("John","Doe","smith","johndoe@cput.ac.za","268RS");
+    private Student studentCreated;
 
-        Student create = studentService.create(createdStudent);
-        assertEquals(create.getStudentId(),createdStudent.getStudentId());
-        System.out.println("ID#1: "+create.getStudentId()+"\nID#2"+createdStudent.getStudentId()+"\n");
+    @Autowired
+    private StudentService studentService;
 
+    void createStudent(Student stud )
+    {
+        studentCreated=studentService.create(stud);
     }
 
     @Test
-    void b_read(){
-        Student read = studentService.read(createdStudent.getStudentId());
-        assertNotNull(read);
-        System.out.println("Reading StudentID: "+read+"\n");
-
+    void d_getAll()
+    {
+        Set<Student> studentSet=studentService.getAll();
+        System.out.println(studentSet);
     }
 
     @Test
-    void c_update(){
-
-        Student updated = new Student.Builder().copy(createdStudent).setCourseID("IT30").build();
-        assertNotNull(studentService.update(updated));
-
-        System.out.println("Current course ID: "+updated.getCourseID()+"\nOld course ID: "+createdStudent.getCourseID());
-
+    void a_create()
+    {
+        createStudent(student);
+        assertEquals("John",studentCreated.getFirstName());
+        System.out.println("Created: "+studentCreated);
     }
 
     @Test
-    void d_delete(){
-        boolean deleted = studentService.delete(createdStudent.getStudentId());
-        assertTrue(deleted);
-        System.out.println("Deleted: "+deleted);
-        e_getAll();
+    void b_read()
+    {
+        createStudent(student);
+        Student studentRead= studentService.read(studentCreated.getStudentId());
+        System.out.println("Read: "+studentRead);
     }
 
     @Test
-    void e_getAll() {
-
-        System.out.println(studentService.getAll()+"\n");
+    void c_update()
+    {
+        createStudent(student);
+        Student studentUpdate=new Student
+                .Builder()
+                .copy(student)
+                .setFirstName("Themba")
+                .setMiddleName("Kha")
+                .setLastName("Zilla")
+                .setStudentEmail("tkz@cput.ac.za")
+                .setCourseID("369RT")
+                .build();
+        studentService.update(studentUpdate);
+        System.out.println("Updated: "+studentUpdate);
     }
+
+    @Test
+    void e_delete()
+    {
+        createStudent(student);
+        boolean delete=studentService.delete(student.getStudentId());
+        assertTrue(delete);
+    }
+
 
 }

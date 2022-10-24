@@ -9,45 +9,48 @@ package za.ac.cput.controller.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import za.ac.cput.entity.Test;
-import za.ac.cput.service.impl.TestService;
+import za.ac.cput.entity.TestModel;
+import za.ac.cput.service.impl.TestModelService;
 
 import java.util.Set;
 
 @RestController
-@RequestMapping("/course")
-public class TestController {
+@RequestMapping("/test")
+public class TestModelController {
 
     @Autowired
-    private TestService testService;
+    private TestModelService testModelService;
 
 
     @RequestMapping(value ="/create",method = RequestMethod.POST)
-    public Test create(@RequestBody Test test )
+    public TestModel create(@RequestBody TestModel test )
     {
-        return testService.create(test);
+        return testModelService.create(test);
     }
 
 
     @GetMapping("/read/{id}")
-    public Test read(@PathVariable String id)
+    public TestModel read(@PathVariable String id)
     {
-        return testService.read(id);
+        return testModelService.read(id);
     }
 
     @PostMapping("/update")
-    public Test update(@RequestBody Test test )
+    public TestModel update(@RequestBody TestModel test )
     {
-        return testService.update(test);
+        return testModelService.update(test);
     }
 
 
     @DeleteMapping("/delete/{id}")
     public Boolean delete(@PathVariable String id)
     {
-        return testService.delete(id);
+        return testModelService.delete(id);
     }
-
+@GetMapping("/getAll")
     //getAll
-    public Set<Object> getAll() {return testService.getAll();}
+    public Set<TestModel> getAll()
+    {
+        return testModelService.getAll();
+    }
 }
