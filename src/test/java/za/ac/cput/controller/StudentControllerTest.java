@@ -39,7 +39,7 @@ class StudentControllerTest {
         assertEquals(postResponse.getStatusCode(), HttpStatus.OK);
         assertEquals(student.getStudentId(),postResponse.getBody().getStudentId());
         testStudent = postResponse.getBody();
-        System.out.println("Course created: "+testStudent.toString());
+        System.out.println("Student created: "+testStudent.toString());
     }
 
     @Test
@@ -57,10 +57,13 @@ class StudentControllerTest {
 
     @Test
     void c_update() {
-
         String url = BASE_URL + "/update/";
         System.out.println("URL: " + url);
-        Student updateStudent = new Student.Builder().copy(student).setStudentId("21718596").setFirstName("Lindiwe").setMiddleName("chris").setLastName("Mhlongo").setStudentEmail("lindiwe@mycput.ac.za").setCourseID("741TY").build();
+        Student updateStudent = new Student
+                .Builder()
+                .copy(student)
+                .setFirstName("Lindiwe").setMiddleName("chris").setLastName("Mhlongo").setStudentEmail("lindiwe@mycput.ac.za").setCourseID("741TY")
+                .build();
         ResponseEntity<Student> postResponse = restTemplate.postForEntity(url,updateStudent,Student.class);
 
         assertNotNull(postResponse.getBody());
@@ -71,7 +74,7 @@ class StudentControllerTest {
     }
 
     @Test
-    void d_delete() {
+    void d_getAll() {
 
         String url = BASE_URL + "/getAll";
         System.out.println("URL: " + url);
@@ -83,6 +86,14 @@ class StudentControllerTest {
         System.out.println(response);
         System.out.println(response.getBody());
 
+    }
+
+    @Test
+    void e_delete()
+    {
+        String url = BASE_URL + "/delete" + student.getStudentId();
+        System.out.println("Student Deleted Successfuly!");
+        restTemplate.delete(url);
     }
 
 

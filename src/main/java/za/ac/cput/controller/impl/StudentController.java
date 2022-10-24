@@ -16,7 +16,7 @@ import za.ac.cput.service.impl.StudentService;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/course")
+@RequestMapping("/student")
 public class StudentController {
 
     @Autowired
@@ -51,5 +51,7 @@ public class StudentController {
     }
 
     //getAll
-    public Set<Object> getAll() {return studentService.getAll();}
+    @GetMapping("/getAll")
+    public Set<Student> getAll()
+    {return studentService.getAll();}
 }
