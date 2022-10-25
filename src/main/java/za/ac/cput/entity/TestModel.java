@@ -1,11 +1,11 @@
 package za.ac.cput.entity;
 
 
-/*
-Entity for Test
+/*Entity for Test
 Author: Themba Kanyile 217238173
 Date : 23 March 2022
  */
+
 
 
 

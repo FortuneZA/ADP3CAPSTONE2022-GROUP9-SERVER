@@ -6,9 +6,9 @@ import za.ac.cput.service.IService;
 
 import java.util.Set;
 
-/*
 
- */
+
+
 public interface ITestModelService extends IService<TestModel,String> {
 
     Set<TestModel> getAll();
