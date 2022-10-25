@@ -1,3 +1,4 @@
+/*
 package za.ac.cput.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +9,15 @@ import za.ac.cput.repository.impl.IFacultyRepository;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+*/
 /*FacultyService.java
 FacultyService implementation
 Author: Mawande Langa (219074054)
-Date: 07/10/2022
+Date: 07/10/2022*//*
 
- */
+
+
+
 @Service
 public class FacultyService implements IFacultyService {
     @Autowired
@@ -58,3 +62,4 @@ public class FacultyService implements IFacultyService {
         return this.facultyRepository.findAll().stream().collect(Collectors.toSet());
     }
 }
+*/

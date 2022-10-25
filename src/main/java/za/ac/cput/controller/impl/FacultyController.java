@@ -1,10 +1,13 @@
-package za.ac.cput.controller.impl;
 /*
- * FacultyController.java
+package za.ac.cput.controller.impl;
+*/
+/* * FacultyController.java
  * Controller for the Faculty
  * Author: Mawande Langa(219074054)
  * Date: 09/10/2022
- * */
+ * *//*
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.entity.Faculty;
@@ -49,3 +52,4 @@ public class FacultyController {
         return facultyService.getAll();
     }
 }
+*/

@@ -1,10 +1,13 @@
-package za.ac.cput.controller.impl;
 /*
- * DepartmentController.java
+package za.ac.cput.controller.impl;
+*/
+/* * DepartmentController.java
  * Controller for the Department
  * Author: Mawande Langa (219074054)
  * Date: 09/10/2022
- * */
+ * *//*
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -49,3 +52,4 @@ public class DepartmentController {
         return departmentService.getAll();
     }
 }
+*/

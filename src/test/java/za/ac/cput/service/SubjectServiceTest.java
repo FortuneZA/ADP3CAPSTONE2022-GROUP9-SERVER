@@ -8,58 +8,75 @@ Author: Mathew Fortuin (219069514)
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.entity.Subject;
 import za.ac.cput.factory.SubjectFactory;
 import za.ac.cput.service.impl.SubjectService;
-import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class SubjectServiceTest {
+    private final Subject subject= SubjectFactory.createSubject("Accounting",36,"KB83");
 
-    private static SubjectService subjectService = SubjectService.getService();
-    private static Subject createdSubject = SubjectFactory.createSubject("ITS045",38,"AW12");
+    private Subject subjectCreated;
 
-    @Test
-    void a_create(){
+    @Autowired
+    private SubjectService subjectService;
 
-        Subject create = subjectService.create(createdSubject);
-        assertEquals(create.getSubjectID(),createdSubject.getSubjectID());
-        System.out.println("ID#1: "+create.getSubjectID()+"\nID#2"+createdSubject.getSubjectID()+"\n");
-
+    void createSubject(Subject sub) {
+        subjectCreated=subjectService.create(sub);
     }
 
     @Test
-    void b_read(){
-        Subject read = subjectService.read(createdSubject.getSubjectID());
-        assertNotNull(read);
-        System.out.println("Reading SubjectID: "+read+"\n");
-
+    void d_getAll()
+    {
+        Set<Subject> subjectSet=subjectService.getAll();
+        System.out.println(subjectSet);
     }
 
     @Test
-    void c_update(){
-
-        Subject updated = new Subject.Builder().copy(createdSubject).setLecturerID("KB012").build();
-        assertNotNull(subjectService.update(updated));
-
-        System.out.println("Current Lecturer ID: "+updated.getLecturerID()+"\nOld Lecturer ID: "+createdSubject.getLecturerID());
-
+    void a_create()
+    {
+        createSubject(subject);
+        assertEquals("ICT:Applications Development",subjectCreated.getSubjectName());
+        System.out.println("Created: "+subjectCreated);
     }
 
     @Test
-    void d_delete(){
-        boolean deleted = subjectService.delete(createdSubject.getSubjectID());
-        assertTrue(deleted);
-        System.out.println("Deleted: "+deleted);
-        e_getAll();
+    void b_read()
+    {
+        createSubject(subject);
+        Subject subjectRead= subjectService.read(subjectCreated.getSubjectID());
+        System.out.println("Read: "+subjectRead);
     }
 
     @Test
-    void e_getAll() {
-
-        System.out.println(subjectService.getAll()+"\n");
+    void c_update()
+    {
+        createSubject(subject);
+        Subject subjectUpdate=new Subject
+                .Builder()
+                .copy(subject)
+                .setLecturerID("KB74")
+                .build();
+        subjectService.update(subjectUpdate);
+        System.out.println("Updated: "+subjectUpdate);
     }
+
+    @Test
+    void e_delete()
+    {
+        createSubject(subject);
+        boolean delete=subjectService.delete(subject.getSubjectID());
+        assertTrue(delete);
+    }
+
+
 
 }

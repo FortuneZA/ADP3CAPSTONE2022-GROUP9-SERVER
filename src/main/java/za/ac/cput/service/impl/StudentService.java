@@ -63,6 +63,6 @@ public class StudentService implements IStudentService {
     }
 
     @Override
-    public Set<Object> getAll() {return this.studentRepository.findAll().stream().collect(Collectors.toSet()); }
+    public Set<Student> getAll() {return this.studentRepository.findAll().stream().collect(Collectors.toSet()); }
 
 }

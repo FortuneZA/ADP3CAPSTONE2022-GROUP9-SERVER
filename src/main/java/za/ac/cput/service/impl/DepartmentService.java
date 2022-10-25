@@ -1,3 +1,4 @@
+/*
 package za.ac.cput.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +9,15 @@ import za.ac.cput.repository.impl.IDepartmentRepository;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+*/
 /*DepartmentService.java
 Department service entity
 Author: Mawande Langa (219074054)
-Date : 07/10/2022
+Date : 07/10/2022*//*
 
- */
+
+
+
 @Service
 public class DepartmentService implements IDepartmentService {
     @Autowired
@@ -61,3 +65,4 @@ public class DepartmentService implements IDepartmentService {
         return this.departmentRepository.findAll().stream().collect(Collectors.toSet());
     }
 }
+*/

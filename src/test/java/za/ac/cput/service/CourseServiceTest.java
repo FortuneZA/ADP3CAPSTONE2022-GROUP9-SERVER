@@ -8,59 +8,76 @@ Author: Mathew Fortuin (219069514)
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.entity.Course;
 import za.ac.cput.factory.CourseFactory;
 import za.ac.cput.service.impl.CourseService;
-import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)
 
 public class CourseServiceTest {
+    private final Course course= CourseFactory.createCourse("Accounting","Fundamentals of finance","FIN24");
 
-    private static CourseService courseService = CourseService.getService();
-    private static Course createdCourse = new CourseFactory().createCourse("ICT:APP20","ICT: Applications Development","Fundamentals of application architecture in the software indsutry");
+    private Course courseCreated;
 
-    @Test
-    void a_create(){
+    @Autowired
+    private CourseService courseService;
 
-        Course createCourse = courseService.create(createdCourse);
-        assertEquals(createCourse.getCourseName(),createdCourse.getCourseName());
-        System.out.println("ID#1: "+createCourse.getCourseId()+"\nID#2"+createdCourse.getCourseId()+"\n");
-
+    void createCourse(Course cor) {
+        courseCreated=courseService.create(cor);
     }
 
     @Test
-    void b_read(){
-        Course read = courseService.read(createdCourse.getCourseId());
-        assertNotNull(read);
-        System.out.println("Reading CourseID: "+read+"\n");
-
+    void d_getAll()
+    {
+        Set<Course> courseSet=courseService.getAll();
+        System.out.println(courseSet);
     }
 
     @Test
-    void c_update(){
-
-        Course updated = new Course.Builder().copy(createdCourse).setDepartmentId("IT30").build();
-        assertNotNull(courseService.update(updated));
-
-        System.out.println("Current department ID: "+updated.getDepartmentId()+"\nOld Department ID: "+createdCourse.getDepartmentId());
-
+    void a_create()
+    {
+        createCourse(course);
+        assertEquals("ICT:Applications Development",courseCreated.getCourseName());
+        System.out.println("Created: "+courseCreated);
     }
 
     @Test
-    void d_delete(){
-        boolean deleted = courseService.delete(createdCourse.getCourseId());
-        assertTrue(deleted);
-        System.out.println("Deleted: "+deleted);
-        e_getAll();
+    void b_read()
+    {
+        createCourse(course);
+        Course courseRead= courseService.read(courseCreated.getCourseId());
+        System.out.println("Read: "+courseRead);
     }
 
     @Test
-    void e_getAll() {
-
-        System.out.println(courseService.getAll()+"\n");
+    void c_update()
+    {
+        createCourse(course);
+        Course courseUpdate=new Course
+                .Builder()
+                .copy(course)
+                .setDepartmentId("ICT7800")
+                .build();
+        courseService.update(courseUpdate);
+        System.out.println("Updated: "+courseUpdate);
     }
+
+    @Test
+    void e_delete()
+    {
+        createCourse(course);
+        boolean delete=courseService.delete(course.getCourseId());
+        assertTrue(delete);
+    }
+
+
 
 }

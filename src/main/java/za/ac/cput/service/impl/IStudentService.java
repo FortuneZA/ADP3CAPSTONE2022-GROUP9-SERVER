@@ -12,5 +12,5 @@ import java.util.Set;
 
 public interface IStudentService extends IService<Student,String>{
   
-    Set<Object> getAll();
+    Set<Student> getAll();
 }

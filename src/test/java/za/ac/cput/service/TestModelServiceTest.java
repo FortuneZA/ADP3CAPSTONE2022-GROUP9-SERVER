@@ -43,7 +43,7 @@ public class TestModelServiceTest {
 
     @Test
     void a_create() {
-        new TestModel(test);
+       createTest(test);
         assertEquals("QWE782",testModelCreated.getSubjectId());
         System.out.println("Created: " + testModelCreated);
     }
