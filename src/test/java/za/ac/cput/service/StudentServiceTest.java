@@ -82,6 +82,7 @@ public class StudentServiceTest {
         createStudent(student);
         boolean delete=studentService.delete(student.getStudentId());
         assertTrue(delete);
+        System.out.println("Student Deleted Successfuly!");
     }
 
 
