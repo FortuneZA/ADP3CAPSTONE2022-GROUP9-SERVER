@@ -9,15 +9,15 @@ import za.ac.cput.util.GenericHelper;
 
 public class SystemAdminFactory {
 
-    public static SystemAdmin createSystemAdmin( String adminName, String adminEmail) {
-        String adminID = GenericHelper.generateID();
+    public static SystemAdmin createSystemAdmin( String adminName, String email) {
+        String adminId = GenericHelper.generateID();
 
-        SystemAdmin systemAdmin = new SystemAdmin.Builder()
-                .setAdminID(adminID)
+        return new SystemAdmin.Builder()
+                .setAdminId(adminId)
                 .setAdminName(adminName)
-                .setAdminEmail(adminEmail)
+                .setAdminEmail(email)
                 .build();
 
-        return systemAdmin;
+
     }
 }
