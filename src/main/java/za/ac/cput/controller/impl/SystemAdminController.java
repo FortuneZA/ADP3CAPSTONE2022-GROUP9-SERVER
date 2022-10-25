@@ -22,19 +22,20 @@ public class SystemAdminController {
     return systemAdminService.create(newSystemAdmin);
     }
 
-    @GetMapping("/read/{systemAdmin}")
+    @GetMapping("/read/{id}")
     public SystemAdmin read(@PathVariable String id){
         return systemAdminService.read(id);
     }
 
     @PostMapping("/update")
     public SystemAdmin update(@RequestBody SystemAdmin systemAdmin){
+
         return systemAdminService.update(systemAdmin);
     }
 
-    @DeleteMapping("/delete/{systemAdmin}")
-    public void delete(@RequestBody SystemAdmin systemAdmin){
-        systemAdminService.delete(systemAdmin.getAdminID());
+    @DeleteMapping("/delete/{id}")
+    public boolean delete(@RequestBody String id){
+        return systemAdminService.delete(id);
     }
 
     @GetMapping("/getall")

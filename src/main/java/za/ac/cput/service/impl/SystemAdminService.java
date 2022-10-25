@@ -46,23 +46,24 @@ public class SystemAdminService implements ISystemAdminService {
     }
 
     @Override
-    public SystemAdmin read(String adminID) {
-        return this.isystemAdminRepository.findById(adminID).orElseGet(null);
+    public SystemAdmin read(String adminId) {
+
+        return this.isystemAdminRepository.findById(adminId).orElseGet(null);
     }
 
     @Override
     public SystemAdmin update(SystemAdmin systemAdmin) {
 
-        if(this.isystemAdminRepository.existsById(systemAdmin.getAdminID())){
+        if(this.isystemAdminRepository.existsById(systemAdmin.getAdminId())){
             return this.isystemAdminRepository.save(systemAdmin);}
         return null;
 
     }
 
     @Override
-    public boolean delete(String adminID) {
-        this.isystemAdminRepository.deleteById(adminID);
-        if(this.isystemAdminRepository.existsById(adminID))
+    public boolean delete(String id) {
+        this.isystemAdminRepository.deleteById(id);
+        if(this.isystemAdminRepository.existsById(id))
             return false;
         else
             return true;

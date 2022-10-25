@@ -18,7 +18,7 @@ class SystemAdminControllerTest {
 
 
 
-    private static SystemAdmin systemAdmin =  SystemAdminFactory.createSystemAdmin("Khuzwayo", "khuzwayo@gmail.com");
+    private  SystemAdmin systemAdmin =  SystemAdminFactory.createSystemAdmin("Khuzwayo", "khuzwayo@gmail.com");
 
 
     @Autowired
@@ -47,6 +47,7 @@ class SystemAdminControllerTest {
 
     @Test
     void b_read() {
+        a_create();
         String url = BASE_URL +"/read/"+ systemAdmin.getAdminEmail();
         System.out.println("URL:" +url);
         ResponseEntity<SystemAdmin> response = restTemplate.getForEntity(url,SystemAdmin.class);
@@ -59,13 +60,13 @@ class SystemAdminControllerTest {
     void c_update()
     {
         a_create();
-    SystemAdmin updated = new SystemAdmin.Builder().copy(systemAdmin).setAdminName("Tyler").build();
+    SystemAdmin updated = new SystemAdmin.Builder().copy(systemAdmin).setAdminName("Zandile").setAdminEmail("Yes@gmail.com").build();
         String url = BASE_URL + "/update";
         System.out.println("URL: " + url);
         ResponseEntity<SystemAdmin> response = restTemplate.postForEntity(url,updated,SystemAdmin.class);
         systemAdmin=response.getBody();
 
-        assertEquals("Tyler",systemAdmin.getAdminName());
+        assertEquals("Zandile",systemAdmin.getAdminName());
         assertNotNull(systemAdmin);
         System.out.println("Updated data:" + systemAdmin);
 
@@ -78,7 +79,7 @@ class SystemAdminControllerTest {
     @Test
     void e_delete()
     {
-        String url = BASE_URL + "/delete" + systemAdmin.getAdminID();
+        String url = BASE_URL + "/delete" + systemAdmin.getAdminId();
         System.out.println("URL: " + url);
         restTemplate.delete(url);
     }
