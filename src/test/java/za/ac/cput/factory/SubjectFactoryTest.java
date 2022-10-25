@@ -3,6 +3,7 @@ package za.ac.cput.factory;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import za.ac.cput.entity.Subject;
+import za.ac.cput.factory.SubjectFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

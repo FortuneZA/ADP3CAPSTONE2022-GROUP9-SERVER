@@ -7,11 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 
-/*
-Student.java
+/*Student.java
 Entity for Student
 Author: Themba Kanyile 217238173
-Date : 23 March 2022
+Date : 23 March 2022*/
 
 
 
@@ -31,9 +30,7 @@ public class Student
         private String studentEmail;
         private String courseID;
 
-    protected Student() {
 
-    }
 
         private Student(Builder builder){
             this.studentId = builder.studentId;

@@ -32,6 +32,7 @@ public class TestModel
 
     private String duration;
     private int resultInPercent;
+
     public TestModel() {
 
     }
@@ -46,9 +47,7 @@ public class TestModel
 
     }
     
-    protected Test() {
 
-    }
 
     public TestModel(TestModel test) {
     }

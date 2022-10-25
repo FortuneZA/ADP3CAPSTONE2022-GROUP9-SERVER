@@ -17,7 +17,7 @@ import za.ac.cput.factory.StudentFactory;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
-    @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class StudentControllerTest {
 
     private static Student student = new StudentFactory().createStudent("Melissa","Yezmin","Willimas","mellisa@cput.ac.za","APDEV261");
