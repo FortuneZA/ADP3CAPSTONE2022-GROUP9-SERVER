@@ -34,14 +34,16 @@ public class LecturerControllerTest {
 
     private final String lecturerURL="http://localhost:8080/lecturer";
 
-    private final String username="";
+    private final String username="Admin";
 
-    private final String password="";
+    private final String password="Admin123";
 
     @Test
     void a_create() {
         String url=lecturerURL+"/create";
-        ResponseEntity<Lecturer> responseEntity=restTemplate.postForEntity(url,lecturer,Lecturer.class);
+        httpHeaders.setBasicAuth(username,password);
+        HttpEntity<Lecturer> httpEntity=new HttpEntity<>(lecturer,httpHeaders);
+        ResponseEntity<Lecturer> responseEntity=restTemplate.postForEntity(url,httpEntity,Lecturer.class);
         assertNotNull(responseEntity);
         assertNotNull(responseEntity.getBody());
         lecturer=responseEntity.getBody();
@@ -53,7 +55,9 @@ public class LecturerControllerTest {
     void b_read() {
         a_create();
         String url=lecturerURL+"/read/"+lecturer.getLecturerId();
-        ResponseEntity<Lecturer> responseEntity=restTemplate.getForEntity(url,Lecturer.class);
+        httpHeaders.setBasicAuth(username,password);
+        HttpEntity<Lecturer> httpEntity=new HttpEntity<>(lecturer,httpHeaders);
+        ResponseEntity<Lecturer> responseEntity=restTemplate.exchange(url,HttpMethod.GET,httpEntity,Lecturer.class);
         lecturer=responseEntity.getBody();
         assert lecturer != null;
         assertEquals(lecturer.getLecturerId(), Objects.requireNonNull(responseEntity.getBody()).getLecturerId());
@@ -65,7 +69,9 @@ public class LecturerControllerTest {
         a_create();
         String url=lecturerURL+"/update";
         Lecturer updateLecturer=new Lecturer.Builder().copy(lecturer).setLecturerEmail("cameronHnoemdo@cput.ac.za").setDepartmentId("ADP00000").build();
-        ResponseEntity<Lecturer> responseEntity=restTemplate.postForEntity(url,updateLecturer,Lecturer.class);
+        httpHeaders.setBasicAuth(username,password);
+        HttpEntity<Lecturer> httpEntity=new HttpEntity<>(updateLecturer,httpHeaders);
+        ResponseEntity<Lecturer> responseEntity=restTemplate.postForEntity(url,httpEntity,Lecturer.class);
         lecturer=responseEntity.getBody();
         System.out.println("Updated: "+lecturer);
         assertEquals("cameronHnoemdo@cput.ac.za",lecturer.getLecturerEmail());
