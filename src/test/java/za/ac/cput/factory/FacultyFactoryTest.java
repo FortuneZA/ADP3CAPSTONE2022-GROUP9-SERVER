@@ -3,7 +3,7 @@
  * Test for the FacultyFactory
  * Author: Mawande Langa(219074054)
  * Date: 30 March 2022
- * */
+ * 
 
 package za.ac.cput.factory;
 
@@ -45,3 +45,4 @@ class FacultyFactoryTest {
 //    @Test
 //    void buildFacultyWith
 }
+*/
