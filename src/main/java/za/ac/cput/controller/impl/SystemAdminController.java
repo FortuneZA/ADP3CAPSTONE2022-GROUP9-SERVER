@@ -34,7 +34,7 @@ public class SystemAdminController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public boolean delete(@RequestBody String id){
+    public boolean delete(@PathVariable String id){
         return systemAdminService.delete(id);
     }
 

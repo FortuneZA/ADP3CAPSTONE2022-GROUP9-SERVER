@@ -79,7 +79,7 @@ class SystemAdminControllerTest {
     @Test
     void e_delete()
     {
-        String url = BASE_URL + "/delete" + systemAdmin.getAdminId();
+        String url = BASE_URL + "/delete/" + systemAdmin.getAdminId();
         System.out.println("URL: " + url);
         restTemplate.delete(url);
     }
