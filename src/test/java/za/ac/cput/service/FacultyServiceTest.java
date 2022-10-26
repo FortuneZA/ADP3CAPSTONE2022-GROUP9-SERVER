@@ -1,9 +1,10 @@
+/*
 package za.ac.cput.service;
 /*FacultyService.java test cases
 Author: Mawande Langa (219074054)
 Date: 09/10/2022
 
- */
+ 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -63,3 +64,4 @@ class FacultyServiceTest {
 }
 
 }
+*/
