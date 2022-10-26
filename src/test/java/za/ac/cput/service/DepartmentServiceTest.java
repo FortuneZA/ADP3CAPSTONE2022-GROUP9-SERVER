@@ -1,3 +1,4 @@
+/*
 package za.ac.cput.service;
 
 import org.junit.jupiter.api.MethodOrderer;
@@ -16,7 +17,7 @@ import java.util.List;
 Author: Mawande Langa (219074054)
 Date: 09/10/2022
 
- */
+ 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.MethodName.class)
 class DepartmentServiceTest {
@@ -57,3 +58,4 @@ private static Department createDepartment = DepartmentFactory.createDepartment(
     System.out.println(departmentService.getAll());
 }
 }
+*/
