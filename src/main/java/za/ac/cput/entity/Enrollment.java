@@ -1,9 +1,12 @@
+/*
 package za.ac.cput.entity;
+*/
 /*
         Enrollment.java
         Author: Devon Daniels 217299822
         Date :15 August 2022
-        */
+        *//*
+
 
 
 public class Enrollment {
@@ -86,3 +89,4 @@ public class Enrollment {
         }
     }
 }
+*/

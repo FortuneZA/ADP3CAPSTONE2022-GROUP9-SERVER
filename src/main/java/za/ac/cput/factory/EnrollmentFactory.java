@@ -1,9 +1,12 @@
+/*
 package za.ac.cput.factory;
+*/
 /*
         EnrollmentFactory.java
         Author: Devon Daniels 217299822
         Date :15 August 2022
-        */
+        *//*
+
 
 import za.ac.cput.entity.Enrollment;
 import za.ac.cput.util.GenericHelper;
@@ -22,4 +25,4 @@ public class EnrollmentFactory {
 
         return enrollment;
     }
-}
+}*/

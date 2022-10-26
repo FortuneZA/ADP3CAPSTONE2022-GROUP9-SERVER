@@ -1,9 +1,12 @@
+/*
 package za.ac.cput.entity;
+*/
 /*
         Tutor.java
         Author: Devon Daniels 217299822
         Date :15 August 2022
-        */
+        *//*
+
 
 public class Tutor {
 
@@ -129,3 +132,4 @@ public class Tutor {
     }
 }
 
+*/
