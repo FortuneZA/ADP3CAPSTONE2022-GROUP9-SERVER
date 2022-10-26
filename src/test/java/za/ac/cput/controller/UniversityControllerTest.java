@@ -4,6 +4,7 @@ UniversityControllerTest.java
 Test class for the University Controller
 Author: Cameron Henry Noemdo (219115443)
  */
+
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -19,7 +20,8 @@ import za.ac.cput.factory.UniversityFactory;
 
 import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.MethodName.class)
@@ -38,14 +40,16 @@ public class UniversityControllerTest {
 
     private final String universityURL="http://localhost:8080/university";
 
-    private final String username="";
+    private final String username="Admin";
 
-    private final String password="";
+    private final String password="Admin123";
 
     @Test
     void a_create() {
         String url=universityURL+"/create";
-        ResponseEntity<University> responseEntity=restTemplate.postForEntity(url,university,University.class);
+        httpHeaders.setBasicAuth(username,password);
+        HttpEntity<University> httpEntity=new HttpEntity<>(university,httpHeaders);
+        ResponseEntity<University> responseEntity=restTemplate.postForEntity(url,httpEntity,University.class);
         assertNotNull(responseEntity);
         assertNotNull(responseEntity.getBody());
         university=responseEntity.getBody();
@@ -56,8 +60,10 @@ public class UniversityControllerTest {
     @Test
     void b_read() {
         a_create();
+        httpHeaders.setBasicAuth(username,password);
+        HttpEntity<University> httpEntity=new HttpEntity<>(university,httpHeaders);
         String url=universityURL+"/read/"+university.getUniversityId();
-        ResponseEntity<University> responseEntity=restTemplate.getForEntity(url,University.class);
+        ResponseEntity<University> responseEntity=restTemplate.exchange(url,HttpMethod.GET,httpEntity,University.class);
         university=responseEntity.getBody();
         assert university != null;
         assertEquals(university.getUniversityId(), Objects.requireNonNull(responseEntity.getBody()).getUniversityId());
@@ -69,7 +75,9 @@ public class UniversityControllerTest {
         a_create();
         String url=universityURL+"/update";
         University updateUniversity=new University.Builder().copy(university).setEmail("cput@edu.co.za").build();
-        ResponseEntity<University> responseEntity=restTemplate.postForEntity(url,updateUniversity,University.class);
+        httpHeaders.setBasicAuth(username,password);
+        HttpEntity<University> httpEntity=new HttpEntity<>(updateUniversity,httpHeaders);
+        ResponseEntity<University> responseEntity=restTemplate.postForEntity(url,httpEntity,University.class);
         university=responseEntity.getBody();
         System.out.println("Updated: "+university);
         assertEquals("cput@edu.co.za",university.getEmail());
