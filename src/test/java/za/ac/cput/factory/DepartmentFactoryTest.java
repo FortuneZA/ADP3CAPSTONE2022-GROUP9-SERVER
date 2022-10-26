@@ -3,7 +3,7 @@
  * Factory for the Department
  * Author: Mawande Langa (219074054)
  * Date: 30 March 2022
- * */
+ * 
 package za.ac.cput.factory;
 
 import org.junit.jupiter.api.Order;
@@ -53,3 +53,4 @@ class DepartmentFactoryTest {
 
 
 }
+*/
